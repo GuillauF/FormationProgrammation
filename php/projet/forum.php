@@ -14,8 +14,7 @@ $gestionUtilisateur = new GestionUtilisateur($connexionBDD);
 
    $resultat .= $gestionUtilisateur->inscription( $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['password']);
 }
-    $resultat .= "Derniers utilisateurs : ".'<br>' .$gestionUtilisateur->find() .$gestionUtilisateur->findUser();
+    $resultat .= "Derniers utilisateurs : ".'<br>' .$gestionUtilisateur->find() .$gestionUtilisateur->findId();
 
     body('template/forum.php', $resultat);
-
 

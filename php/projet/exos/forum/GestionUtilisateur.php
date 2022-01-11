@@ -70,7 +70,7 @@ class GestionUtilisateur
             $prepare->execute();
         } catch (PDOException $e) {
             if ('dev' === APP_ENV) {
-                var_dump($e);
+                var_dump($exception);
                 die();
             } else {
                 die("La lecture de la base de donnée ne marche pas<br>Veuillez contacter votre administrateur");
