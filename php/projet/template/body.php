@@ -20,10 +20,15 @@
     body{
         background-color: white;
     }
-    img{
+    img.logo2{
         margin: 0;
         height: 90px;
         width: 150px;
+    }
+    img.logo{
+        margin: 0;
+        height: 90px;
+        width: 110px;
     }
 
     header {

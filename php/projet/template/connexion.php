@@ -4,11 +4,13 @@
         <br>
         <input type="text" name="login" placeholder="Entrez le login">
         <br>
-        <input type="password" name="password" placeholder="Entrez le mot de passe">
+        <input type="password" name="password" size="255" placeholder="Entrez le mot de passe">
         <br>
-        <input type="submit" value="connexion" >
+        <input  type="submit"  name="valider"  value="valider"  />
         <br>
+        <a  href="forum.php">Créer votre Compte</a>
     </div>
+
 </form>
 
 <style>

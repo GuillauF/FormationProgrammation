@@ -24,7 +24,7 @@ class Calculette
                 return $this->premierNombre - $this->deuxiemeNombre;
             } else if ("mul" == $this->operateur) {
                 return $this->premierNombre * $this->deuxiemeNombre;
-            } else if (("div" == $this->operateur) && ($this->deuxiemeNombre == 0)){
+            } else if (("div" == $this->operateur) && (0 == $this->deuxiemeNombre)){
                 return "Erreur division par zéro";
             } else {
                 return $this->premierNombre / $this->deuxiemeNombre;

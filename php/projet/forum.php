@@ -3,18 +3,18 @@ require ('exos/GestionBDD.php');
 require ('config.php');
 require ('util.php');
 require ('exos/forum/GestionUtilisateur.php');
+require ('exos/Request.php');
 
+$request = new Request($_POST);
 $gestionBDD = new GestionBDD();
 $connexionBDD = $gestionBDD->connexionBDD();
 $gestionUtilisateur = new GestionUtilisateur($connexionBDD);
 
-    $resultat ='';
+        $resultat = '';
 
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['login']) && !empty($_POST['password'])){
-
-   $resultat .= $gestionUtilisateur->inscription( $_POST['nom'], $_POST['prenom'], $_POST['login'], $_POST['password']);
-}
-    $resultat .= "Derniers utilisateurs : ".'<br>' .$gestionUtilisateur->find() .$gestionUtilisateur->findId();
+        $inscription = $gestionUtilisateur->inscription($request);
+        $find = "Derniers utilisateurs : " . '<br>' . $gestionUtilisateur->find() . $gestionUtilisateur->findUser();
+        $resultat .= $inscription.$find;
 
     body('template/forum.php', $resultat);
 

@@ -13,7 +13,5 @@ $connexionBDD = $gestionBDD->connexionBDD();
 $gestionSecurite = new GestionSecurite();
 //var_dump($_POST);
 
-$resultat = $gestionSecurite->connexionForum($connexionBDD, $request);
-
-body('template/connexion.php', $resultat);
-
+$resultat = $gestionSecurite->DataUpdate($connexionBDD, $request);
+body('template/dataupdate.php');

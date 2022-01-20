@@ -1,7 +1,7 @@
 
 <header>
     <img class="logo"
-         src="https://www.6tm.com/uploads/2cd40257947437577f493d5bb037cd41.png"
+         src="https://i.pinimg.com/originals/97/a5/34/97a534c4e5e6a8d84671afeaf871942e.png"
          alt="LogoTM">
     <nav>
         <ul>
@@ -18,7 +18,7 @@
                 </ul>
             </li>
             <li><a href="contact.php" class="">Contact us</a></li>
-            <li><a href="about.php" class="">About us</a></li>
+            <li><a href="forum.php" class="">Forum</a></li>
         </ul>
 
     </nav>

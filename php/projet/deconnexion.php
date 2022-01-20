@@ -1,6 +1,10 @@
 <?php
+
+require ('exos/forum/GestionSecurite.php');
+require ('util.php');
+
 session_start();
-session_unset();
-session_destroy();
-header('location: index.php ');
-exit();
+
+$gestionSecurite = new GestionSecurite();
+$gestionSecurite->Deconnexion();
+
