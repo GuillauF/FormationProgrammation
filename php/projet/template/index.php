@@ -8,7 +8,6 @@
     <div class="membre">
     <img class="logo2"
          src="https://www.6tm.com/uploads/2cd40257947437577f493d5bb037cd41.png" alt="lol"><br>
-     <a href="connexion.php">Se connecter</a>
     </div>
 </form>
 </body>

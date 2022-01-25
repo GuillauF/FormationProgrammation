@@ -48,15 +48,14 @@ class GestionSecurite
 
     }
 
-    public function Deconnexion()
-    {
-        session_unset();
-        session_destroy();
-        unset($_SESSION);
-        header('location: connexion.php ');
-    }
+    public function deconnexion()
+        {
+            session_unset();
+            session_destroy();
+            redirection('index.php');
+        }
 
-    public function DataUpdate(PDO $connexionBDD, Request $request)
+    public function dataUpdate(PDO $connexionBDD, Request $request)
     {
         try {
             $nom = $request->getPost('nom');// $login = $_POST['login'];
@@ -65,22 +64,26 @@ class GestionSecurite
             $password = $request->getPost('password');
             $envoyer = $request->getPost('envoyer');
 
-            $pass_hash = '';
+            if ($nom && $prenom && $login && $password && $envoyer) {
+                if ($_SESSION['user'] = $login) {
+                    $password = password_hash($password, PASSWORD_DEFAULT);
 
-            if($nom && $prenom && $login && $password && $envoyer) {
-                $password = password_hash($password, PASSWORD_DEFAULT);
-
-                $query = 'UPDATE user SET nom= :nom, prenom= :prenom WHERE login= :login';
-                //UPDATE user SET `nom`= "Baba", `prenom`= "Aliexpress" WHERE `login`= "Etles"
-                $prepare = $connexionBDD->prepare($query);
-                $prepare->execute([
-                    ':nom' => $nom,
-                    ':prenom' => $prenom,
-                    ':login' => $login
-                ]);
-                // puis on execute sa requete
-                 $prepare->fetch(PDO::FETCH_ASSOC); // tant qu'on récupère l'enregistrement d'un utilisateur, on boucle
-                return "Vos données ont bien été modifiées";
+                    $query = 'UPDATE user SET nom= :nom, prenom= :prenom, password = :password WHERE login= :login';
+                    //UPDATE user SET `nom`= "Baba", `prenom`= "Aliexpress" WHERE `login`= "Etles"
+                    $prepare = $connexionBDD->prepare($query);
+                    $prepare->execute([
+                        ':nom' => $nom,
+                        ':prenom' => $prenom,
+                        ':login' => $login,
+                        ':password' => $password
+                    ]);
+                    // puis on execute sa requete
+                    $prepare->fetch(PDO::FETCH_ASSOC); // tant qu'on récupère l'enregistrement d'un utilisateur, on boucle
+                    return "Vos données ont bien été modifiées";
+                }
+                else {
+                    return "Vous ne pouvez pas changer les données d'un autre utilisateur !";
+                }
             }
         }
         catch (PDOException $exception) {

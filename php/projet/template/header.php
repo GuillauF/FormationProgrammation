@@ -19,7 +19,20 @@
             </li>
             <li><a href="contact.php" class="">Contact us</a></li>
             <li><a href="forum.php" class="">Forum</a></li>
+            <ul class="">
+
+            </ul>
         </ul>
+        <?php
+        if(!isset($_SESSION['user'])) { ?>
+            <a href="connexion.php">se connecter</a>
+            <?php
+        }
+        if(!empty($_SESSION['user'])) { ?>
+            Utilisateur : <?=$_SESSION['user']?> <a href="logout.php">se déconnecter</a>
+            <?php
+        }
+        ?>
 
     </nav>
 
