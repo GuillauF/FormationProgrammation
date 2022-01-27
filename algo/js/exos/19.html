@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Exercice 19</title>
+</head>
+
+<body>
+    Objectif: Inverser une phrase donnée
+    <script>
+        let phrase = prompt("entrez une phrase");
+        //on crée une chaine vide pour accueillir notre résultat
+        let envers = "";
+        //on parcours la phrase d'origine à l'aide d'une boucle tournant "à l'envers"
+        for (let i = phrase.length - 1; i >= 0; i--) {
+            //on ajoute chaque caractère trouvé à notre chaine de résultat
+            envers = envers + phrase[i];
+        }
+        //on affiche enfin notre phrase inversée
+        console.log(envers);
+
+    </script>
+</body>
+
+</html>

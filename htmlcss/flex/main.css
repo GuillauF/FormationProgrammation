@@ -1,0 +1,17 @@
+.container {
+    border: 1px solid black;
+    height: 200px;
+    width: 100%;
+    background-color: tomato;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.block {
+    background-color: white;
+    height: 50px;
+    width: 50px;
+}

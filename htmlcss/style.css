@@ -1,0 +1,58 @@
+/*En CSS, on peut définir l'apparence de nos éléments grâce à des règles
+Ces règles ciblent un ou plusieurs éléments puis définissent des propriétés pour ces éléments
+*/
+
+/* Ici, on cible les éléments h1 de notre page */
+h1 {
+/* Et on leur attribue une nouvelle couleur de texte */
+color: rgb(238, 238, 227);
+/* on peut également leur donner une nouvelle taille de texte  */
+font-size: 2em; /* 1em équivaut à 1 hauteur de caractère, 3em signifie donc 3 fois plus grand qu'un caractère */
+}
+
+h1 span {
+color: rgba(255, 0, 0, 0.376);
+}
+/* on peut cibler plusieurs éléments en les séparant par des virgules  */
+h2,
+h3 {
+color: green;
+font-size: 1.5em;
+}
+
+/* on peut choisir de cibler non pas un type d'élément (h1, div, main) mais une classe CSS
+
+tous les éléments possédant cette classe (au travers de l'attribut class="nomDeClasse" dans le html) seront donc concernés par cette règle  */
+.blue-color {
+color: blue;
+}
+
+/* pour pouvoir styliser notre liste, on doit se débarasser de certaines propriétés par défaut */
+nav ul {
+/* par exemple, si on désire enlever le style des puces de nos éléments de liste */
+list-style-type: none;
+/* ou si l'on souhaite supprimer les marges intérieures */
+padding: 0;
+/* ou si l'on veut afficher les éléments en ligne au lieu de colonne (flex est tout un système d'orientation et organisation des blocs que nous verrons plus tard) */
+display: flex;
+}
+/* les éléments de liste eux même peuvent également être stylisés */
+nav li {
+/* ici on leur demande par exemple d'être un peu plus en marge par rapport au contenu en spécifiant une marge extérieure */
+margin: 1em;
+}
+/* pour rendre nos liens plus visibles on peut également les cibler */
+nav a {
+/* changer la couleur de fond */
+background-color: aliceblue;
+/* changer leurs marges intérieures */
+padding: 0.3em;
+/* et également arrondir les angles autour de nos liens */
+border-radius: 5px;
+}
+
+/* on peut également spécifier quel style adopter lors de certaines situations avec des pseudos classes, comme par exemple ici spécifier des règles qui ne seront actives que si l'on survole l'élément avec la souris*/
+nav a:hover {
+background-color: yellow;
+border: 1px solid black;
+}
