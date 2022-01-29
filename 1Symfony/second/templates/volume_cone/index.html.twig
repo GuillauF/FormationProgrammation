@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Volume du Cone{% endblock %}
+
+{% block body %}
+        <h3>Volume d'un cône</h3>
+            <form method="POST" action="">
+                <label class="title" for="volume">Calcul du volume d'un cone (pi * rayon² * hauteur)/3, pi est approximé à 3.14
+        <br>
+        <div>
+            <label>
+                Rayon de la base
+                <input name="radius" type="number" value="{{ radius }}">
+            </label>
+            <br>
+            <label>
+                Hauteur du cone
+                <input name="height" type="number" value="{{ height }}">
+            </label>
+            <br>
+            <label class="round">
+                Arrondir ?
+                <input type="checkbox" name="round">
+            </label>
+        </div>
+            <label class="envoi"><input class="boutton-envoyer" type="submit">
+            <output>{{ resultat }}</output></label>
+       </label>
+    </form>
+
+{% endblock %}

@@ -1,20 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DJeuDesController!{% endblock %}
+{% block title %}Jeu de Dés!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/FormationProgrammation/1Symfony/second/src/Controller/JeuDesController.php'|file_link(0) }}">src/Controller/DJeuDesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/FormationProgrammation/1Symfony/second/templates/jeu_des/index.html.twig'|file_link(0) }}">templates/d_jeu_des/index.html.twig</a></code></li>
-    </ul>
-</div>
+<h3>Lancer de Dés</h3>
+<form method="POST" action="">
+    <label class="title" for="LancerDés">Formulaire générant un ou plusieurs lancers de dés en indique le nombre <br>
+        de lancers devant le nom du dé. Par exemple, 3d10 indiquerait un lancer de 3 dés à 10 faces. <br> Le résultat obtenu
+        serait donc compris entre 3 et 30.<br>
+            <input type="text" name="dice" value="{{ champ }}" placeholder="Ex : 2D6 + 3D10 + 5D3">
+            <input type="submit" value="Jet de dé(s)">
+            <output>{{ resultat }}</output>
+    </label>
+</form>
 {% endblock %}
