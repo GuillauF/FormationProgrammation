@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class JeuDesController extends AbstractController
 {
     #[Route('/jeu/des', name: 'jeu_des')]
-    public function jeuDes(Request $request) : Response
+    public function Dice(Request $request) : Response
     {
         $des = '';
         $total = 0;

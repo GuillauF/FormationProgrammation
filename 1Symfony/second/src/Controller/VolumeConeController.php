@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VolumeConeController extends AbstractController
 {
     #[Route('/volume/cone', name: 'volume_cone')]
-    public function volumeCone(Request $request): Response
+    public function cone(Request $request): Response
     {
         $radius = '';
         $height = '';

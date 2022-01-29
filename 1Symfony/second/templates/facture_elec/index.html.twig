@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture EDF{% endblock %}
+
+{% block body %}
+    <h3>Facture Electricité</h3>
+    <form method="POST" action="">
+        <label class="title" for="Facture">A partir de la grille tarifaire EDF en vigueur, et en fonction de <br>
+            la puissance en Kilo Voltampère et du nombre de kWh consommés par l'utilisateur, calculer le total du prix à payer <br>
+            <div>
+                <label for="kWH">Consommation (kWH)</label>
+                <input name="kWh" id="kWH" type="number">
+                <br>
+                <label>
+                    Puissance
+                    <select name="puissance" id="">
+                        <option value="3kVA">3kVA</option>
+                        <option value="6kVA">6kVA</option>
+                        <option value="9kVA">9kVA</option>
+                        <option value="12kVA">12kVA</option>
+                        <option value="15kVA">15kVA</option>
+                        <option value="18kVA">18kVA</option>
+                    </select>
+                </label>
+                <label>
+                    Heure Creuse
+                    <input type="checkbox" name="HC">
+                </label>
+                <label>
+                    Heure Pleine
+                    <input type="checkbox" name="HP">
+                </label>
+            </div>
+                <label class="envoi"><input class="boutton-envoyer" type="submit"></label> <br>
+             {{ resultat }}
+        </label>
+    </form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BandwidthController!{% endblock %}
+
+{% block body %}
+        <h3>Bande Passante</h3>
+        <form method="POST" action="">
+        <label class="title" for="bandwidth">Formulaire permettant de convertir des valeurs en `bit/s` en différents ordres de grandeur.
+        <br>
+        <div>
+            <label for="bandwidth">Conversion</label>
+            <br>
+            <input type="number" step="any" name="value" placeholder="valeur à convertir" id=""><br>
+            <select name="unit1" id="">
+                <option value="b/s">b/s</option>
+                <option value="kb/s">kb/s</option>
+                <option value="Mb/s">Mb/s</option>
+                <option value="Gb/s">Gb/s</option>
+                <option value="o/s">o/s</option>
+                <option value="ko/s">ko/s</option>
+                <option value="Mo/s">Mo/s</option>
+                <option value="Go/s">Go/s</option>
+            </select><br>
+            <select name="unit2" id="">
+                <option value="b/s">b/s</option>
+                <option value="kb/s">kb/s</option>
+                <option value="Mb/s">Mb/s</option>
+                <option value="Gb/s">Gb/s</option>
+                <option value="o/s">o/s</option>
+                <option value="ko/s">ko/s</option>
+                <option value="Mo/s">Mo/s</option>
+                <option value="Go/s">Go/s</option>
+            </select>
+        </div>
+            <label class="envoi"><input class="boutton-envoyer" type="submit"></label> <br>
+            {{ resultat }}
+        </label>
+    </form>
+
+{% endblock %}

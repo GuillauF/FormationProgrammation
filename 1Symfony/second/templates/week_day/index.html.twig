@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeekDay{% endblock %}
+
+{% block body %}
+    <h3>Jour de la semaine</h3>
+    <form method="POST" action="">
+        <label class="title" for="weekday">Formulaire récupérant une date (jour, mois, année). <br>
+            La date rentrée par l'utilisateur détermine le jour de la semaine correspondant.
+            <br>
+            <div>
+                <label>
+                    Jour
+                    <input name="day" type="number" value="{{ day }}">
+                </label>
+                <br>
+                <label>
+                    Mois
+                    <input name="month" type="number" value="{{ month }}">
+                </label>
+                <br>
+                <label>
+                    Année
+                    <input name="year" type="number" value="{{ year }}">
+                </label>
+            </div>
+            <label class="envoi"><input type="submit">
+                <output>{{ equivalent }}</output></label>
+        </label>
+    </form>
+{% endblock %}

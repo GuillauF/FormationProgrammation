@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Random Number{% endblock %}
+
+{% block body %}
+    <h3>Nombre Aléatoire</h3>
+    <form method="POST" action="">
+        <label class="title" for="random-number">A partir d'un formulaire demandant un mimimum, un maximum et un nombre de valeurs à générer,
+            <br> afficher "n" nombres aléatoires compris entre "min" et "max".
+            <br>
+            <div>
+                <label>
+                    Min
+                    <input name="min" type="number" value="{{ min }}">
+                </label>
+                <br>
+                <label>
+                    Max
+                    <input name="max" type="number" value="{{ max }}">
+                </label>
+                <br>
+                <label>
+                    Nombre de valeurs
+                    <input name="nbvalues" type="number" value="{{ nbvalues }}">
+                </label>
+            </div>
+            <label class="envoi"><input type="submit"></label>
+                 {{ resultat }}
+        </label>
+    </form>
+{% endblock %}
