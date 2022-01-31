@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,4 +71,28 @@ class BonjourController extends AbstractController
         ]);
     }
 
+    #[Route('/formulaire/second', name:'formulaireSecond')]
+    public function formulaireSecond(Request $request) : Response
+    {
+        $form = $this->createFormBuilder()
+                    ->add('cle')
+                    ->add('prenom')
+                    ->add('envoie', SubmitType::class)
+                    ->setMethod('POST')
+                    ->getForm();
+
+        $form->handleRequest($request);
+
+        $cequejetape = '';
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $cequejetape = $request->request->get('formulaire');
+        }
+
+        return $this->render('bonjour/formulaireSecond.twig', [
+            'formulaire' => $form->createView(),
+            'cle' => 'valeur',
+            'cequejetape' => $cequejetape
+            ]);
+    }
 }

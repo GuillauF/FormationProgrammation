@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu du FizzBuzz{% endblock %}
+
+{% block body %}
+    <h3>FizzBuzz !</h3>
+    <form method="POST" action=""><br>
+
+        <label>Entrez une valeur <input type="number" step="any" name="valueMax"></label> <br>
+        <label class="envoi"><input type="submit"></label>
+        {{ resultat }}
+
+    </form>
+{% endblock %}

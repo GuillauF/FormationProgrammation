@@ -12,9 +12,6 @@ class CalculateController extends AbstractController
     #[Route('/calculate', name: 'calculate')]
     public function calcul(Request $request): Response
     {
-        $premierNombre = '';
-        $operateur = '';
-        $deuxiemeNombre = '';
         $resultat = '';
 
         if($request->request->count()) {
@@ -35,9 +32,7 @@ class CalculateController extends AbstractController
             }
         }
         return $this->render('calculate/index.html.twig', [
-            'premierNombre' => $premierNombre,
-            'operateur' => $operateur,
-            'deuxiemeNombre' => $deuxiemeNombre,
+
             'resultat' => $resultat,
         ]);
     }

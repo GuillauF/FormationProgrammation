@@ -12,10 +12,8 @@ class BandwidthController extends AbstractController
     #[Route('/bandwidth', name: 'bandwidth')]
     public function bandePassante(Request $request): Response
     {
-        $value = '';
-        $unit1 = '';
-        $unit2 = '';
         $resultat = '';
+        $value = '';
 
         if($request->request->count()) {
             $value = $request->request->get('value');
@@ -27,10 +25,8 @@ class BandwidthController extends AbstractController
             $resultat = number_format($value * ($ratios[$unit2] / $ratios[$unit1]), 2, '.', ' ');
         }
         return $this->render('bandwidth/index.html.twig', [
-            'value' => $value,
-            'unit1' => $unit1,
-            'unit2' => $unit2,
             'resultat' => $resultat,
+            'valeur' => $value
         ]);
     }
 }

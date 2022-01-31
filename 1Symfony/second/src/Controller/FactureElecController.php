@@ -12,8 +12,6 @@ class FactureElecController extends AbstractController
     #[Route('/facture/elec', name: 'facture_elec')]
     public function facture(Request $request): Response
     {
-        $kWh = '';
-        $puissance = '';
         $resultat = '';
 
         $Base = ["3kVA" => 0.1558, "6kVA" => 0.1558, "9kVA" => 0.1605, "12kVA" => 0.1605, "15kVA" => 0.1605, "18kVA" => 0.1605];
@@ -39,8 +37,6 @@ class FactureElecController extends AbstractController
             }
         }
         return $this->render('facture_elec/index.html.twig', [
-            'kWh' => $kWh,
-            'puissance' => $puissance,
             'resultat' => $resultat,
         ]);
     }
