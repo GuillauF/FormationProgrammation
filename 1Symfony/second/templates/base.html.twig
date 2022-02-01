@@ -13,9 +13,31 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+    {% block head %} <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:8000/" class="">Accueil</a></li>
+            <li class="button-select"><a href="#" class="">Exos</a>
+                <ul class="sous-menu">
+                    <li><a href="{{ path('calculate',{ name: 'calculate'}) }}">Calculatrice</a></li>
+                    <li><a href="{{ path('volume_cone',{ name: 'volume_cone'}) }}">Volume Cône</a></li>
+                    <li><a href="{{ path('random_number',{ name: 'random_number'}) }}">Nombres Aléatoires</a></li>
+                    <li><a href="{{ path('bandwidth',{ name: 'bandwidth'}) }}">Bande Passante</a></li>
+                    <li><a href="{{ path('week_day',{ name: 'week_day'}) }}">Date</a></li>
+                    <li><a href="{{ path('facture_elec',{ name: 'facture_elec'}) }}">Facture Elec</a></li>
+                    <li><a href="{{ path('jeu_des',{ name: 'jeu_des'}) }}">Jeu de dés</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="">Contact us</a></li>
+            <li><a href="{{ path('login',{ name: 'login'}) }}">Forum</a></li>
+        </ul>
+        <?php
+        if(!isset($_SESSION['user'])) { ?>
+        <a href="#">se connecter</a>
+    </nav>
+
+    {% endblock %}
     <body>
-    {% block head %} entête à faire{% endblock %}
         {% block body %}{% endblock %}
-    {% block footer %} pied de page à faire{% endblock %}
     </body>
+    {% block footer %} pied de page à faire{% endblock %}
 </html>

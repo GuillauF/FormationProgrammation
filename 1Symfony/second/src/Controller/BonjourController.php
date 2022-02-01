@@ -20,7 +20,9 @@ class BonjourController extends AbstractController
     #[Route('/', name: 'accueil')]
     public function versionResponse(): Response
     {
-        return new Response('Mon accueil');
+        return $this->render('bonjour/index.html.twig', [
+            'controller_name' => 'BonjourController',
+        ]);
     }
 
     /**
@@ -30,13 +32,7 @@ class BonjourController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/versionrender', name: 'versionrender')]
-    public function versionRender(): Response
-    {
-        return $this->render('bonjour/index.html.twig', [
-            'controller_name' => 'BonjourController',
-        ]);
-    }
+
 
     /**
      * $this->render(
@@ -72,27 +68,30 @@ class BonjourController extends AbstractController
     }
 
     #[Route('/formulaire/second', name:'formulaireSecond')]
-    public function formulaireSecond(Request $request) : Response
+    public function formulaireSecond(Request $r) : Response
     {
         $form = $this->createFormBuilder()
-                    ->add('cle')
-                    ->add('prenom')
-                    ->add('envoie', SubmitType::class)
-                    ->setMethod('POST')
-                    ->getForm();
+            ->add('cle')
+            ->add('prenom')
+            ->add('envoie', SubmitType::class)
+            ->setMethod('POST')
+            ->getForm();
 
-        $form->handleRequest($request);
+        $form->handleRequest($r);
 
-        $cequejetape = '';
+        $cequejaitape = 'dvdfdfdf';
+//dd($form->isSubmitted(), $form->isValid(), $form->getData());
+        if($form->isSubmitted() && $form->isValid()) {
+            $cequejetape = $r->request->get('form')['cle'];
 
-        if ($form->isSubmitted() && $form->isValid()){
-            $cequejetape = $request->request->get('formulaire');
+            $mesDonnees = $form->getData();
+            $cequejaitape = $mesDonnees['cle'];
+            //dd($form->getData(), $cequejetape, $r->request);
         }
 
         return $this->render('bonjour/formulaireSecond.twig', [
             'formulaire' => $form->createView(),
-            'cle' => 'valeur',
-            'cequejetape' => $cequejetape
-            ]);
+            'cequejetape' => $cequejaitape
+        ]);
     }
 }
