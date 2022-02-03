@@ -26,20 +26,20 @@ class VoitureController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $voiture = new Voiture();
-        $form = $this->createForm(VoitureType::class, $voiture);
-        $form->handleRequest($request);
+        $voiture->setNom('Eric');
+        $voiture2 = new Voiture();
+        $voiture2->setNom('Laurent');
+        $voiture3 = new Voiture();
+        $voiture3->setNom('Lolo');
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($voiture);
+            $entityManager->persist($voiture2);
+            $entityManager->persist($voiture3);
             $entityManager->flush();
 
-            return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
-        }
+        return $this->redirectToRoute('voiture_index');{
 
-        return $this->renderForm('voiture/new.html.twig', [
-            'voiture' => $voiture,
-            'form' => $form,
-        ]);
+        }
     }
 
     #[Route('/{id}', name: 'voiture_show', methods: ['GET'])]
