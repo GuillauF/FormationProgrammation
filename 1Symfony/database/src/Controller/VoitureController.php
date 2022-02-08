@@ -22,24 +22,96 @@ class VoitureController extends AbstractController
         ]);
     }
 
+    #[Route('/exo', name: 'exo')]
+    public function exo(EntityManagerInterface $entityManager) : Response
+    {
+        $voiture = new Voiture();
+        $voiture->setNom("V1");
+        $voiture2 = new Voiture();
+        $voiture2->setNom("V2");
+        $voiture3 = new Voiture();
+        $voiture3->setNom("V3");
+
+        $entityManager->persist($voiture);
+        $entityManager->persist($voiture2);
+        $entityManager->persist($voiture3);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/new', name: 'voiture_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Dans le cadre d'un nouvel enregistrement :
+        // on instancie une entité (ici une voiture)
         $voiture = new Voiture();
-        $voiture->setNom('Eric');
-        $voiture2 = new Voiture();
-        $voiture2->setNom('Laurent');
-        $voiture3 = new Voiture();
-        $voiture3->setNom('Lolo');
 
+        // on crée un formulaire via notre Type (ici VoitureType) et le second paramètre sera l'entité précédemment créée
+        $form = $this->createForm(VoitureType::class, $voiture);
+        // on hydrate notre formulaire et l'entité via les données qu'on aura tapées
+        $form->handleRequest($request);
+
+        // on vérifie que le formulaire est envoyé et validé
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Préparation de l'enregistrement dans notre base de donnée qui aura pour paramètre l'entité créé précédemment
             $entityManager->persist($voiture);
-            $entityManager->persist($voiture2);
-            $entityManager->persist($voiture3);
+            // puis on enregistre tout ce que l'on a persisté
             $entityManager->flush();
 
-        return $this->redirectToRoute('voiture_index');{
-
+            $this->addFlash('notice', 'Ma voiture est bien enregistré');
+            return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
         }
+
+        return $this->renderForm('voiture/new.html.twig', [
+            'voiture' => $voiture,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/suppressionListeVoiture', name: 'suppressionListeVoiture')]
+    public function suppressionListeVoiture(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager) : Response
+    {
+        $listeVoiture = $voitureRepository->findAll();
+        $nbrVoiture = count($listeVoiture);
+        $nbrSuppression = count($listeVoiture) < 3 ? $nbrVoiture : 3;
+
+        for($i = $nbrVoiture; $i > $nbrVoiture-$nbrSuppression; $i--)
+        {
+            $entityManager->remove($listeVoiture[$i-1]);
+        }
+
+        $entityManager->flush();
+
+        if(0 === $nbrSuppression) {
+            $this->addFlash("notice", "Aucune voiture à supprimer");
+        } else {
+            $this->addFlash("notice", "Vous avez supprimé : $nbrSuppression voiture.s");
+        }
+
+        return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/suppressionListeVoitureAvecNotreRepo', name: 'suppressionListeVoitureAvecNotreRepo')]
+    public function suppressionListeVoitureAvecNotreRepo(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager) : Response
+    {
+        $listeVoiture = $voitureRepository->supprimeTroisVoiture();
+        $nbrSuppression = count($listeVoiture);
+
+        for($i = $nbrSuppression; $i > 0; $i--)
+        {
+            $entityManager->remove($listeVoiture[$i-1]);
+        }
+
+        $entityManager->flush();
+
+        if(0 === $nbrSuppression) {
+            $this->addFlash("notice", "Aucune voiture à supprimer");
+        } else {
+            $this->addFlash("notice", "Vous avez supprimé : $nbrSuppression voiture.s");
+        }
+
+        return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}', name: 'voiture_show', methods: ['GET'])]

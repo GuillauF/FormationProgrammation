@@ -16,8 +16,8 @@ class Voiture
     #[ORM\Column(type: 'string', length: 100)]
     private $nom;
 
-    #[ORM\ManyToOne(targetEntity: Marque::class, inversedBy: 'voitures')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Marque::class, inversedBy: 'voiture')]
+    #[ORM\JoinColumn(nullable: true)]
     private $marque;
 
     public function getId(): ?int
@@ -29,6 +29,7 @@ class Voiture
     {
         return $this->nom;
     }
+
 
     public function setNom(string $nom): self
     {
