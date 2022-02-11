@@ -3,6 +3,9 @@
 {% block title %}Voiture index{% endblock %}
 
 {% block body %}
+    {%  if is_granted ('ROLE_ADMIN') %}
+    je suis admin<br>
+    {% endif %}
     <h1>Voiture index</h1>
 
     {# read and display all flash messages #}
