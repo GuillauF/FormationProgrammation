@@ -4,14 +4,17 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\UpdateUserFormType;
 use App\Security\AppCustomAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+
 
 class RegistrationController extends AbstractController
 {
@@ -44,28 +47,39 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'password_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    #[Route('/updateUser/{id}', name: 'updateUser')]
+    #[IsGranted('ROLE_USER')]
+    public function updateUser(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UserPasswordHasherInterface::class, $user);
+        $userCurrentID = $this->getUser()->getId();
+
+//        if($userCurrentID !== $user->getId() && !$this->isGranted('ROLE_ADMIN')) {
+        if($userCurrentID !== $user->getId()) {
+
+            return $this->redirectToRoute('updateUser', ['id' => $userCurrentID]);
+        }
+
+        $form = $this->createForm(UpdateUserFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
+
             $entityManager->persist($user);
             $entityManager->flush();
+            // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('voiture_index');
         }
 
-        return $this->renderForm('users/index.html.twig', [
-            'password' => $userPasswordHasher,
-            'editProfile' => $form->createView(),
+        return $this->render('registration/updateUser.html.twig', [
+            'updateUser' => $form->createView(),
         ]);
     }
 

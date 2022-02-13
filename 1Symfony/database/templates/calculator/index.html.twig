@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CalculatorController!{% endblock %}
+
+{% block body %}
+    <form method="post">
+
+        <h1 class="h3 mb-3 font-weight-normal">Calculatrice</h1>
+        <label for="numnber1">Premier Nombre<input type="number" step=any name="premierNombre"></label><br>
+        <select name="operateur">
+            <option class="plus" value="add">+</option>
+            <option value="sub">-</option>
+            <option value="mul">*</option>
+            <option value="div">/</option>
+        </select> <br>
+        <label for="number2">Deuxieme Nombre <input type="number" step=any name="deuxiemeNombre"></label><br>
+        <button class="btn btn-lg btn-primary" type="submit">Calculer </button>
+
+    </form>
+
+{% endblock %}

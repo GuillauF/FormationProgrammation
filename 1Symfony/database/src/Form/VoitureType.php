@@ -25,8 +25,7 @@ class VoitureType extends AbstractType
 //                    return $marques->getNom();
 //                }
                 'choice_label' => 'nom' // la valeur est un attribut d'une entité
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -17,7 +17,7 @@ class VoitureController extends AbstractController
     #[Route('/', name: 'voiture_index', methods: ['GET'])]
     public function index(VoitureRepository $voitureRepository): Response
     {
-        if (!$this->isGranted('ROLE_ADMIN')){
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_USER'))  {
     throw new \Exception("Seuls les admins peuvent voir cette page");
         }
         return $this->render('voiture/index.html.twig', [

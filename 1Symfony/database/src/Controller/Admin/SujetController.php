@@ -17,6 +17,10 @@ class SujetController extends AbstractController
     #[Route('/', name: 'sujet_index', methods: ['GET'])]
     public function index(SujetRepository $sujetRepository): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_USER'))  {
+            throw new \Exception("Seuls les admins peuvent voir cette page");
+        }
+
         return $this->render('sujet/index.html.twig', [
             'sujets' => $sujetRepository->findAll(),
         ]);
