@@ -1,4 +1,3 @@
-
 // si on n'utilise pas defer dans la balise script, on peut executer des functions ou autre dans la function ci-dessous
 document.addEventListener('DOMContentLoaded', function () {
     changeListe();

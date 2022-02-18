@@ -5,9 +5,18 @@
 {% block javascripts %}
     {{ parent() }}
 
-   <script defer src="{{ asset('js/chifoumi.js') }}"></script>
+    <script defer src="{{ asset('js/chifoumi.js') }}"></script>
 
 {% endblock %}
 
 {% block body %}
+
+    <div class="box">
+        <button>Pierre</button>
+        <button>Feuilles</button>
+        <button>Ciseaux</button>
+    </div>
+
+    <div class="resultat"></div>
+
 {% endblock %}

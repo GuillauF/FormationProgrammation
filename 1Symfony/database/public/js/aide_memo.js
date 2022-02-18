@@ -1,4 +1,4 @@
-let tab = new Array(1, 2, 4);
+let tab = [1, 2, 4];
 let tableau = [1,2,4]
 
 let variable = 'texte'; // entre guillemet / apostrophe = texte
