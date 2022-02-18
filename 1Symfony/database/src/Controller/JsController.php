@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/js')]
 class JsController extends AbstractController
 {
-    #[Route('/js', name: 'js')]
-    public function index(): Response
+    #[Route('/', name: 'aideMemo')]
+    public function aideMemo(): Response
     {
-        return $this->render('js/index.html.twig', [
+        return $this->render('js/aideMemo.twig', [
             'controller_name' => 'JsController',
         ]);
     }
@@ -20,5 +21,11 @@ class JsController extends AbstractController
     public function premierExo(): Response
     {
         return $this->render('js/premierExo.twig');
+    }
+
+    #[Route('/chifoumi', name: 'chifoumi')]
+    public function chifoumi(): Response
+    {
+        return $this->render('js/chifoumi.twig');
     }
 }

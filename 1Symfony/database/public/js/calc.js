@@ -15,7 +15,7 @@ switch (operateur) {
             alert("Division par 0 impossible");
         }
 
-        if(dividende/diviseur === Infinity){
+        if(dividende/diviseur == Infinity){
             alert("Division par 0 impossible");
         }
         alert(valPremiere / valSeconde);

@@ -1,4 +1,4 @@
-let tab = [1, 2, 4]
+let tab = new Array(1, 2, 4);
 let tableau = [1,2,4]
 
 let variable = 'texte'; // entre guillemet / apostrophe = texte
@@ -130,6 +130,93 @@ let maFunctionTernaire = function() {
 }
 
 console.log(maFunctionTernaire)
+
+
+// information du navigateur
+console.log(navigator);
+// information sur notre fenetre de notre navigateur
+console.log(window);
+// toutes les infos sur notre page html
+console.log(document)
+// exemple recupere une fois la page html chargé tous les enfants de body
+console.log(document.body.children);
+// childNodes donne tous les noeuds (les elements + texte), dans ce cas présent du body
+console.log(document.body.childNodes);
+
+
+let ulListOne = document.getElementById('ulListOne');
+let items = ulListOne.getElementsByTagName('li');
+
+// querySelector permet de recuperer un element comme je le ferai en CSS
+// dans cet exemple #ulListOne je recupere l'element ulListOne dans ma page
+let ulListOne = document.querySelector('#ulListOne');
+// Ici je récupere l'element ulListOne qui a une classe " maclasse "
+let ulListOne = document.querySelector('#ulListOne.maclasse');
+// Lui va recuperer un ensemble d'element avec la meme notation que les CSS
+let items = ulListOne.querySelectorAll('li');
+
+
+let json = {
+    cle: "valeur",
+    prenom: "Jason",
+    nom: "Vorhees",
+
+    getPrenom : function () {
+        return this.prenom;
+    }
+}
+
+console.log(json.getPrenom());
+
+// Je peux ajouter une méthode à ma " class " qui s'appelle json
+json.getNom = function () {
+    return this.nom
+}
+
+let tabJson = [
+    {prenom: "test"},
+    {prenom: "blabla"}
+]
+
+console.log(tabJson)
+console.log(tabJson[0].prenom)
+console.log(tabJson[1].prenom)
+
+// Creation en DOM d'un élement div
+let div = document.createElement('div');
+div.id = 'divCree'; // je lui rajoute un identifiant
+div.innerText = "texte"; // du contenu
+// textContent récupère le contenu de tous les éléments, y compris <script> et <style>, ce qui n'est pas le cas de innerText.
+// voir doc https://developer.mozilla.org/fr/docs/Web/API/Node/textContent
+div.textContent = "texte"; // du contenu
+
+// on ajouter des attributs à element de cette façon
+div.setAttribute("class", "maClasse");
+// en dom
+div.className = "maClasse";
+
+// Permet d'ajouter la création de l'élement precedent, ici dans notre body
+document.body.appendChild(div);
+
+let li = document.createElement('li');
+li.title = "C'est mon titre";
+li.className = "liClass";
+li.innerText = "Bonjour, C'est Mon LI créé en JS";
+
+let ul = document.getElementById('ul');
+ul.appendChild(li);
+
+let span = document.createElement('span');
+span.innerHTML = '<strong>mon span</strong>';
+
+let divCree = document.getElementById('divCree');
+
+// ajouter des evenements il faut utiliser sur element "addEventListener"
+document.getElementById('testid').addEventListener("click", function (e) {
+    // e.target.textContent = "fffff"
+    console.log(e, this);
+    this.innerHTML = '<h2>je change le texte</h2>';
+});
 
 
 //
