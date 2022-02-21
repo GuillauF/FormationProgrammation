@@ -2,11 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Images;
 use App\Entity\Voiture;
 use App\Form\VoitureType;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +19,8 @@ class VoitureController extends AbstractController
     #[Route('/', name: 'voiture_index', methods: ['GET'])]
     public function index(VoitureRepository $voitureRepository): Response
     {
-        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_USER'))  {
-    throw new \Exception("Seuls les admins peuvent voir cette page");
+        if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_USER')) {
+            throw new \Exception("Seuls les admin/utilisateurs peuvent voir cette page");
         }
         return $this->render('voiture/index.html.twig', [
             'voitures' => $voitureRepository->findAll(),
@@ -26,7 +28,7 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/exo', name: 'exo')]
-    public function exo(EntityManagerInterface $entityManager) : Response
+    public function exo(EntityManagerInterface $entityManager): Response
     {
         $voiture = new Voiture();
         $voiture->setNom("V1");
@@ -57,6 +59,18 @@ class VoitureController extends AbstractController
 
         // on vérifie que le formulaire est envoyé et validé
         if ($form->isSubmitted() && $form->isValid()) {
+            // on récupère les images transmises
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                $img = new Images();
+                $img->setNom($fichier);
+                $voiture->addImage($img);
+            }
             // Préparation de l'enregistrement dans notre base de donnée qui aura pour paramètre l'entité créé précédemment
             $entityManager->persist($voiture);
             // puis on enregistre tout ce que l'on a persisté
@@ -73,20 +87,19 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/suppressionListeVoiture', name: 'suppressionListeVoiture')]
-    public function suppressionListeVoiture(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager) : Response
+    public function suppressionListeVoiture(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager): Response
     {
         $listeVoiture = $voitureRepository->findAll();
         $nbrVoiture = count($listeVoiture);
         $nbrSuppression = count($listeVoiture) < 3 ? $nbrVoiture : 3;
 
-        for($i = $nbrVoiture; $i > $nbrVoiture-$nbrSuppression; $i--)
-        {
-            $entityManager->remove($listeVoiture[$i-1]);
+        for ($i = $nbrVoiture; $i > $nbrVoiture - $nbrSuppression; $i--) {
+            $entityManager->remove($listeVoiture[$i - 1]);
         }
 
         $entityManager->flush();
 
-        if(0 === $nbrSuppression) {
+        if (0 === $nbrSuppression) {
             $this->addFlash("notice", "Aucune voiture à supprimer");
         } else {
             $this->addFlash("notice", "Vous avez supprimé : $nbrSuppression voiture.s");
@@ -96,19 +109,18 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/suppressionListeVoitureAvecNotreRepo', name: 'suppressionListeVoitureAvecNotreRepo')]
-    public function suppressionListeVoitureAvecNotreRepo(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager) : Response
+    public function suppressionListeVoitureAvecNotreRepo(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager): Response
     {
         $listeVoiture = $voitureRepository->supprimeTroisVoiture();
         $nbrSuppression = count($listeVoiture);
 
-        for($i = $nbrSuppression; $i > 0; $i--)
-        {
-            $entityManager->remove($listeVoiture[$i-1]);
+        for ($i = $nbrSuppression; $i > 0; $i--) {
+            $entityManager->remove($listeVoiture[$i - 1]);
         }
 
         $entityManager->flush();
 
-        if(0 === $nbrSuppression) {
+        if (0 === $nbrSuppression) {
             $this->addFlash("notice", "Aucune voiture à supprimer");
         } else {
             $this->addFlash("notice", "Vous avez supprimé : $nbrSuppression voiture.s");
@@ -128,12 +140,27 @@ class VoitureController extends AbstractController
     #[Route('/{id}/edit', name: 'voiture_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Voiture $voiture, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw new \Exception("Seuls les admins peuvent voir cette page");
+        }
+
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // on récupère les images transmises
+            $images = $form->get('images')->getData();
+            foreach ($images as $image) {
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                $img = new Images();
+                $img->setNom($fichier);
+                $voiture->addImage($img);
+            }
             $entityManager->flush();
-
             return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -146,11 +173,33 @@ class VoitureController extends AbstractController
     #[Route('/{id}', name: 'voiture_delete', methods: ['POST'])]
     public function delete(Request $request, Voiture $voiture, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$voiture->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $voiture->getId(), $request->request->get('_token'))) {
             $entityManager->remove($voiture);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+      #[Route('/supprime/image/{id}', name:"voiture_delete_image", methods: ['GET'])]
+        public function deleteImage(Images $image, Request $request, EntityManagerInterface $entityManager){
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+            // On récupère le nom de l'image
+            $nom = $image->getNom();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory').'/'.$nom);
+
+            // On supprime l'entrée de la base
+            $entityManager->remove($image);
+            $entityManager->flush();
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        }else{
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
     }
 }

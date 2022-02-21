@@ -3,6 +3,13 @@
 {% block title %}Voiture index{% endblock %}
 
 {% block body %}
+    <style>
+        div{display: flex; flex-direction: row; justify-content: space-around;}
+        ul{list-style-type: none}
+        @media screen and (max-width: 850px) {div {display: flex;overflow: scroll;
+            flex-wrap: wrap; align-items: center;}  }
+    </style>
+
     {%  if is_granted ('ROLE_ADMIN') %}
     je suis admin<br>
     {% endif %}
@@ -17,33 +24,28 @@
         {% endfor %}
     {% endfor %}
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Marque</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
+        <ul>
+            <li>Id</li>
+            <li>Nom</li>
+            <li>Marque</li>
+            <li>actions</li>
+        </ul>
+        <div>
         {% for voiture in voitures %}
-            <tr>
-                <td>{{ voiture.id }}</td>
-                <td>{{ voiture.nom }}</td>
-                <td>{{ voiture.marque.nom }}</td>
-                <td>
+
+                <ul>
+                <li>{{ voiture.id }}</li>
+                <li>{{ voiture.nom }}</li>
+                <li>{{ voiture.marque.nom }}</li>
+                <li>
                     <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
                     <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+
+                </li>
+            </ul>
+
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
 
     <a href="{{ path('voiture_new') }}">Create new</a>
 {% endblock %}
