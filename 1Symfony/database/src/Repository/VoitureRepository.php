@@ -19,6 +19,19 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    public function supprimeTroisVoiture()
+    {
+        // on aurait pu utiliser la méthode findBy([], 'DESC', 3)
+        $result = $this->createQueryBuilder('v')
+            ->orderBy('v.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
+    }
+
     // /**
     //  * @return Voiture[] Returns an array of Voiture objects
     //  */

@@ -19,11 +19,11 @@ class Marque
     private $nom;
 
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Voiture::class)]
-    private $voitures;
+    private $voiture;
 
     public function __construct()
     {
-        $this->voitures = new ArrayCollection();
+        $this->voiture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,15 +46,15 @@ class Marque
     /**
      * @return Collection|Voiture[]
      */
-    public function getVoitures(): Collection
+    public function getVoiture(): Collection
     {
-        return $this->voitures;
+        return $this->voiture;
     }
 
     public function addVoiture(Voiture $voiture): self
     {
-        if (!$this->voitures->contains($voiture)) {
-            $this->voitures[] = $voiture;
+        if (!$this->voiture->contains($voiture)) {
+            $this->voiture[] = $voiture;
             $voiture->setMarque($this);
         }
 
@@ -63,7 +63,7 @@ class Marque
 
     public function removeVoiture(Voiture $voiture): self
     {
-        if ($this->voitures->removeElement($voiture)) {
+        if ($this->voiture->removeElement($voiture)) {
             // set the owning side to null (unless already changed)
             if ($voiture->getMarque() === $this) {
                 $voiture->setMarque(null);

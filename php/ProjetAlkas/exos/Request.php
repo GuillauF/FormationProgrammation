@@ -10,6 +10,10 @@ class Request
         session_start();
     }
 
+    public static function enableHttpMethodParameterOverride()
+    {
+    }
+
     /**
      * Je set une variable de session
      * exemple $_SESSION[$name] = $value;

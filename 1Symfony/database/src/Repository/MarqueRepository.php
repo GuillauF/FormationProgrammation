@@ -20,7 +20,7 @@ class MarqueRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Marque[] Returns an array of Marque objects
+    //  * @return Marques[] Returns an array of Marques objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MarqueRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Marque
+    public function findOneBySomeField($value): ?Marques
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

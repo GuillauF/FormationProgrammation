@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sujet{% endblock %}
+
+{% block body %}
+    <h1>Theme du QCM {{ sujet.theme }}</h1>
+
+    {% for question in sujet.questions %}
+        <h2>{{ question.questionPourUnChampion }}</h2>
+
+        {% for reponse in question.reponses %}
+{#            {{ reponse.nom }}#}
+            <input type="checkbox" value="{{ reponse.id }}" name="reponse" id="reponse{{ reponse.id }}">
+            <label for="reponse{{ reponse.id }}">{{ reponse.nom }}</label>
+            <br>
+        {% endfor %}
+    {% endfor %}
+
+    <a href="{{ path('sujet_index') }}">back to list</a>
+
+    <a href="{{ path('sujet_edit', {'id': sujet.id}) }}">edit</a>
+
+    {{ include('sujet/_delete_form.html.twig') }}
+{% endblock %}
