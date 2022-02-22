@@ -19,13 +19,17 @@
             <th>Marque</th>
             <td>{{ voiture.marque.nom }}</td>
         </tr>
-
         </tbody>
     </table>
 
+        {% for image in voiture.images %}
+            <img src="{{ ('/uploads/' ~ image.nom) }}" alt="Image" width="300">
+        {% endfor %}
+    <br>
+
     <a href="{{ path('voiture_index') }}">back to list</a>
-
+    {%  if is_granted ('ROLE_ADMIN') %}
     <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
-
+    {% endif %}
     {{ include('voiture/_delete_form.html.twig') }}
 {% endblock %}
