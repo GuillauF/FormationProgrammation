@@ -161,7 +161,6 @@ class VoitureController extends AbstractController
                 $voiture->addImage($img);
             }
             $entityManager->flush();
-            return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('voiture/edit.html.twig', [
@@ -182,24 +181,18 @@ class VoitureController extends AbstractController
     }
 
       #[Route('/supprime/image/{id}', name:"voiture_delete_image", methods: ['GET'])]
-        public function deleteImage(Images $image, Request $request, EntityManagerInterface $entityManager){
-        $data = json_decode($request->getContent(), true);
+        public function deleteImage(Images $image, EntityManagerInterface $entityManager){
 
-        // On vérifie si le token est valide
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-            // On récupère le nom de l'image
-            $nom = $image->getNom();
-            // On supprime le fichier
-            unlink($this->getParameter('images_directory').'/'.$nom);
+              // On récupère le nom de l'image
+              $nom = $image->getNom();
+              // On supprime le fichier
+              unlink($this->getParameter('images_directory') . '/' . $nom);
 
-            // On supprime l'entrée de la base
-            $entityManager->remove($image);
-            $entityManager->flush();
+              // On supprime l'entrée de la base
+              $entityManager->remove($image);
+              $entityManager->flush();
 
-            // On répond en json
-            return new JsonResponse(['success' => 1]);
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-    }
+          return $this->redirectToRoute('voiture_index', [],Response::HTTP_SEE_OTHER);
+      }
+
 }
