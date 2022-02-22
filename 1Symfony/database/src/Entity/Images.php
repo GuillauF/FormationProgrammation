@@ -17,7 +17,7 @@ class  Images
     private $nom;
 
     #[ORM\ManyToOne(targetEntity: Voiture::class, inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $voiture;
 
     public function getId(): ?int

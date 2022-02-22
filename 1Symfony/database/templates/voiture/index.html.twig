@@ -38,6 +38,7 @@
                 <li>{{ voiture.id }}</li>
                 <li>{{ voiture.nom }}</li>
                 <li>{{ voiture.marque.nom }}</li>
+                    <li>{{ voiture.prix.valeur }}</li>
 
                     {% for image in voiture.images %}
                     <img src="{{ ('/uploads/' ~ image.nom) }}" alt="Image" width="300"><br>
