@@ -25,6 +25,10 @@ class Voiture
     #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: Images::class, cascade: ['persist'], orphanRemoval: true,)]
     private $images;
 
+    #[ORM\ManyToOne(targetEntity: Prix::class, inversedBy: 'voiture')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $prix;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -87,6 +91,18 @@ class Voiture
                 $image->setVoiture(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?Prix
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(?Prix $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

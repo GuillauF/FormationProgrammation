@@ -3,14 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Marque;
+use App\Entity\Prix;
 use App\Entity\Voiture;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use function Sodium\add;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\abstract_arg;
+
 
 class VoitureType extends AbstractType
 {
@@ -33,6 +33,12 @@ class VoitureType extends AbstractType
                 ['label' => 'Ajouter une image',
                     'multiple' => true,
                     'mapped' => false,
+                    'required' => false
+                ])
+            ->add('prix', EntityType::class,
+                ['class' => Prix::class, // nom l'entité dont on a besoin
+                'choice_label' => 'valeur' // la valeur est un attribut d'une entité
+
                 ])
         ;
     }
