@@ -16,7 +16,7 @@ class Prix
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string', length: 100)]
     private $valeur;
 
     #[ORM\OneToMany(mappedBy: 'prix', targetEntity: Voiture::class, orphanRemoval: true)]
@@ -27,17 +27,17 @@ class Prix
         $this->voiture = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getValeur(): ?int
+    public function getValeur(): ?string
     {
         return $this->valeur;
     }
 
-    public function setValeur(int $valeur): self
+    public function setValeur(string $valeur): self
     {
         $this->valeur = $valeur;
 

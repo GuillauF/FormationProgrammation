@@ -4,16 +4,18 @@
 
 {% block body %}
     <style>
-        div{display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;}
-        ul{list-style-type: none}
-        @media screen and (max-width: 850px) {div {display: flex;overflow: scroll;
-            flex-wrap: wrap; align-items: center;}  }
+        div{display: flex;  flex-wrap: wrap; justify-content: space-around;}
+        main ul{display: flex; flex-direction: row; list-style-type: none; margin-bottom: 15px; border-bottom: 1px solid #32a1ce}
+        div, .description{display: flex; flex-direction: column; list-style-type: none; background-color: aliceblue}
+        main img{margin-right: 20px; border: thick double #32a1ce;}
+        @media screen and (max-width: 850px) {div {display: flex; overflow: scroll;
+            flex-wrap: wrap;}  }
     </style>
 
     {%  if is_granted ('ROLE_ADMIN') %}
     je suis admin<br>
     {% endif %}
-    <h1>Voiture index</h1>
+    <h1>Voitures sur TeamCars</h1>
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -24,31 +26,27 @@
         {% endfor %}
     {% endfor %}
 
-        <ul>
-            <li>Id</li>
-            <li>Nom</li>
-            <li>Marque</li>
-            <li>Prix</li>
-            <li>actions</li>
-        </ul>
         <div>
         {% for voiture in voitures %}
 
                 <ul>
-                <li>{{ voiture.id }}</li>
-                <li>{{ voiture.nom }}</li>
-                <li>{{ voiture.marque.nom }}</li>
-                    <li>{{ voiture.prix.valeur }}</li>
-
                     {% for image in voiture.images %}
-                    <img src="{{ ('/uploads/' ~ image.nom) }}" alt="Image" width="300"><br>
+                        <img src="{{ ('/uploads/' ~ image.nom) }}" alt="Image" width="300">
                     {% endfor %}
+
+                    <div class="Description">
+                <li>Id {{ voiture.id }}</li>
+                <li>Nom {{ voiture.nom }}</li>
+                <li>Marque {{ voiture.marque.nom }}</li>
+                    <li>Prix {{ voiture.prix.valeur }}</li>
+
                     <li>
                     <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
                     {%  if is_granted ('ROLE_ADMIN') %}
                     <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
                     {%  endif %}
                     </li>
+                    </div>
             </ul>
 
         {% endfor %}
