@@ -29,6 +29,9 @@ class Voiture
     #[ORM\JoinColumn(nullable: true)]
     private $prix;
 
+    #[ORM\Column(type: 'text')]
+    private $description;
+
 
     public function __construct()
     {
@@ -104,6 +107,18 @@ class Voiture
     public function setPrix(?Prix $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

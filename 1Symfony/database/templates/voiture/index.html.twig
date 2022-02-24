@@ -15,7 +15,7 @@
     {%  if is_granted ('ROLE_ADMIN') %}
     je suis admin<br>
     {% endif %}
-    <h1>Voitures sur TeamCars</h1>
+    <h1>Voitures TeamCars</h1>
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -37,8 +37,9 @@
                     <div class="Description">
                 <li>Id {{ voiture.id }}</li>
                 <li>Nom {{ voiture.nom }}</li>
-                <li>Marque {{ voiture.marque.nom }}</li>
-                        <li>Prix {{ voiture.prix.valeur }}</li>
+                <li>Marque : {{ voiture.marque.nom }}</li>
+                        <li>Prix : {{ voiture.prix.valeur }}</li>
+                        <li>Annonce : {{ voiture.description }}</li>
                     <li>
                     <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
                     {%  if is_granted ('ROLE_ADMIN') %}

@@ -9,15 +9,15 @@
             <style>
                 *{margin: 0;padding: 0;}
                 body{background-color: white;}
-                img.logo{margin: 0;height: 80px; width: 180px;}
+                img.logo{margin-right: 20px;height: 80px; width: 190px;}
                 header nav {display: flex;margin: 0;justify-content: space-between;padding: 10px;font-size: 20px;
                     color: cornflowerblue;background-image: url("https://a-static.besthdwallpaper.com/course-gris-voiture-sport-dans-la-pluie-fond-d-ecran-1280x960-26117_20.jpg");
                     background-repeat: no-repeat;background-size: cover;border-bottom: #1e6091 solid 1px; padding-top: 20px;}
                 header nav ul{display: flex;flex-wrap: wrap;list-style-type: none;}
-                header nav ul li {width: 130px;height: 35px;line-height: 35px;text-align: center;background-color: rgb(67, 113, 180);
-                    border: 1px solid white;border-radius: 10px;float: left;font-size: 17px;margin: 5px;padding: 0;}
+                header nav ul li {width: 130px;height: 35px;line-height: 35px;text-align: center;background-color: snow;
+                    border: 1px solid rgb(67, 113, 180);border-radius: 10px;float: left;font-size: 17px;margin: 5px;padding: 0; margin-top: 15px;}
                 ul ul li{display: none;}
-                nav ul li > ul li{font-size: 15px;margin: 0;}
+                nav ul li > ul li{font-size: 17px;margin: 2px; color: rgb(67, 113, 180)}
                 nav ul li:hover > ul li {display: flex;position: relative;justify-content: center;}
                 li a{text-decoration: none;}
                 li a:hover{color: aquamarine;}
@@ -26,8 +26,8 @@
                     margin: 0;padding: 30px;}
                 footer {display: flex;justify-content: center;padding-top: 10px;height: 35px;color: white;background-color: black;}
                 .text-dark{text-decoration: none;}
-                a:hover, a:focus {text-decoration: none;}
-                .nav-link{padding: 5px}
+                a:hover, a:focus, a:visited {text-decoration: none; color: rgb(67, 113, 180);}
+                .nav-link{padding: 5px; margin-top: 15px}
                 @media screen and (max-width: 850px) {  main, div, figure {display: flex;overflow: scroll;
                         flex-direction: column;align-items: center;}  }
             </style>
@@ -45,10 +45,13 @@
                 <img class="logo" src="https://www.steamcars.be/wp-content/uploads/2019/10/S-TEAMCARS.png" alt="LogoTM">
 
             <li><a href="{{path('home')}}" class="">Accueil</a></li>
+            <li><a href="{{path('voiture_index')}}">Location Voitures</a></li>
             <li class="button-select"><a href="#" class="">Exos</a>
                 <ul class="sous-menu">
-                    <li><a href="{{path('voiture_index')}}">Voiture</a></li>
                     <li><a href="{{path('sujet_index')}}">QCM</a></li>
+                    <li><a href="{{path('calculatrice')}}">Calculatrice</a></li>
+                    <li><a href="{{path('bande_passante')}}">Bande Passante</a></li>
+                    <li><a href="{{path('jeu_des')}}">Lancer de Dés</a></li>
                 </ul>
             </li>
                 </ul>
