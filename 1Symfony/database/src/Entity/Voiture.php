@@ -29,6 +29,7 @@ class Voiture
     #[ORM\JoinColumn(nullable: true)]
     private $prix;
 
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -106,5 +107,6 @@ class Voiture
 
         return $this;
     }
+
 
 }
