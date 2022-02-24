@@ -8,6 +8,7 @@ use App\Entity\Voiture;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -40,6 +41,7 @@ class VoitureType extends AbstractType
                 'choice_label' => 'valeur' // la valeur est un attribut d'une entité
 
                 ])
+
         ;
     }
 

@@ -38,8 +38,7 @@
                 <li>Id {{ voiture.id }}</li>
                 <li>Nom {{ voiture.nom }}</li>
                 <li>Marque {{ voiture.marque.nom }}</li>
-                    <li>Prix {{ voiture.prix.valeur }}</li>
-
+                        <li>Prix {{ voiture.prix.valeur }}</li>
                     <li>
                     <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
                     {%  if is_granted ('ROLE_ADMIN') %}
