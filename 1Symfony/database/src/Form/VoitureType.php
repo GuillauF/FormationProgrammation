@@ -41,7 +41,10 @@ class VoitureType extends AbstractType
                 'choice_label' => 'valeur' // la valeur est un attribut d'une entité
 
                 ])
-
+            ->add('description', TextareaType::class,
+                ['label' => 'Ajouter une image',
+                    'required' => false
+                ])
         ;
     }
 
