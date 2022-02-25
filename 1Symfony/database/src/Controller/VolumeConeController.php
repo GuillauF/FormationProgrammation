@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\VolumeCone;
-use AppBundle\Form\VolumeConeType;
+use App\Form\VolumeConeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

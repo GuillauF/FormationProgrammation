@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categories;
 use App\Entity\Marque;
 use App\Entity\Prix;
 use App\Entity\Voiture;
@@ -42,8 +43,12 @@ class VoitureType extends AbstractType
 
                 ])
             ->add('description', TextareaType::class,
-                ['label' => 'Ajouter une image',
+                ['label' => 'Ajouter une description',
                     'required' => false
+                ])
+            ->add('categories', EntityType::class,
+                ['class' => Categories::class,
+
                 ])
         ;
     }

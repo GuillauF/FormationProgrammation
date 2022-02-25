@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\JeuDes;
-use AppBundle\Form\JeuDes1Type;
+use App\Form\JeuDesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class JeuDesController extends AbstractController
     {
         $total = 0;
         $jeuDes = new JeuDes();
-        $form = $this->createForm(JeuDes1Type::class, $jeuDes);
+        $form = $this->createForm(JeuDesType::class, $jeuDes);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

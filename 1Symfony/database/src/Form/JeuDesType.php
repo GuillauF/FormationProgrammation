@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class JeuDes1Type extends AbstractType
+class JeuDesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -15,4 +15,5 @@ class JeuDes1Type extends AbstractType
             ->add('Lancer', SubmitType::class)
             ->getForm();
     }
+
 }
