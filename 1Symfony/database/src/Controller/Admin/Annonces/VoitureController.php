@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Annonces;
 
 use App\Entity\Images;
 use App\Entity\Voiture;
 use App\Form\VoitureType;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -185,6 +185,7 @@ class VoitureController extends AbstractController
 
               // On récupère le nom de l'image
               $nom = $image->getNom();
+
               // On supprime le fichier
               unlink($this->getParameter('images_directory') . '/' . $nom);
 
@@ -192,7 +193,28 @@ class VoitureController extends AbstractController
               $entityManager->remove($image);
               $entityManager->flush();
 
-          return $this->redirectToRoute('voiture_index', [],Response::HTTP_SEE_OTHER);
+
+          return $this->redirectToRoute('voiture_index');
       }
+
+    #[Route('/ajout/annonce', name:"ajout_annonce", methods: ['GET'])]
+    public function ajoutAnnonce(ParamConverter $config, Request $request, Voiture $voiture, EntityManagerInterface $entityManager){
+
+      $voiture = new Voiture();
+
+        $form = $this->createForm(VoitureType::class, $voiture);
+        // on hydrate notre formulaire et l'entité via les données qu'on aura tapées
+        $form->handleRequest($request);
+
+        // on vérifie que le formulaire est envoyé et validé
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $entityManager->persist($voiture);
+            $entityManager->flush();
+
+        }
+        return $this->redirectToRoute('voiture_index');
+    }
 
 }

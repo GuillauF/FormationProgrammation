@@ -17,7 +17,7 @@
                 header nav ul li {width: 130px;height: 35px;line-height: 35px;text-align: center;background-color: snow;
                     border: 1px solid rgb(67, 113, 180);border-radius: 10px;float: left;font-size: 17px;margin: 5px;padding: 0; margin-top: 15px;}
                 ul ul li{display: none;}
-                nav ul li > ul li{font-size: 17px;margin: 2px; color: rgb(67, 113, 180)}
+                nav ul li > ul li{font-size: 17px;margin: 0; color: rgb(67, 113, 180)}
                 nav ul li:hover > ul li {display: flex;position: relative;justify-content: center;}
                 li a{text-decoration: none;}
                 li a:hover{color: aquamarine;}
@@ -66,7 +66,7 @@
 
             {% if is_granted('ROLE_ADMIN') %}
                 {% if mainNavAdmin is defined %}active{% endif %}
-                    <a class="nav-link" href="{{ path('voiture_index') }}">espace admin</a>
+                    <a class="nav-link" href="{{ path('home') }}">espace admin</a>
             {% endif %}
 
             {% if is_granted('ROLE_USER') %}

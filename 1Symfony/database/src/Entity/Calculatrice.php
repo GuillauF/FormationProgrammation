@@ -10,10 +10,10 @@ class Calculatrice
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float')]
     private $premierNombre;
 
     #[ORM\Column(type: 'string', length: 255)]

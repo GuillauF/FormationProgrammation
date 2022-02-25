@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Calculatrice;
-use AppBundle\Form\Calculatrice1Type;
+use App\Form\CalculatriceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ class CalculatriceController extends AbstractController
     {
         $resultat = '';
         $calculatrice = new Calculatrice();
-        $form = $this->createForm(Calculatrice1Type::class, $calculatrice);
+        $form = $this->createForm(CalculatriceType::class, $calculatrice);
 
         $form->handleRequest($request);
 

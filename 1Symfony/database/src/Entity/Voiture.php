@@ -6,10 +6,12 @@ use App\Repository\VoitureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Slug as Gedmo;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
 class Voiture
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -31,6 +33,24 @@ class Voiture
 
     #[ORM\Column(type: 'text')]
     private $description;
+
+    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'annonceVoiture')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $categories;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'voitures')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    #[Gedmo\Timestampable(['on = create'])]
+    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\JoinColumn(nullable: true)]
+    private $slug;
+
+    #[Gedmo\slug(fields: ['nom'])]
+    #[ORM\Column(type: 'datetime')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $created_at;
 
 
     public function __construct()
@@ -121,6 +141,40 @@ class Voiture
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categories $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
     }
 
 

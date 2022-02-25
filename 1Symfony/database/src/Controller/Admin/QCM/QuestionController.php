@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\QCM;
 
 use App\Entity\Question;
 use App\Form\QuestionType;

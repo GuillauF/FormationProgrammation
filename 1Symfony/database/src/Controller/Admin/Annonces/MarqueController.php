@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Annonces;
 
 use App\Entity\Marque;
 use App\Form\MarqueType;
