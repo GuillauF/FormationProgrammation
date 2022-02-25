@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\BandePassante;
-use AppBundle\Form\BandePassanteType;
+use AppBundle\Form\BandePassante1Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class BandePassanteController extends AbstractController
     {
         $resultat = '';
         $bandePassante = new BandePassante();
-        $form = $this->createForm(BandePassanteType::class, $bandePassante);
+        $form = $this->createForm(BandePassante1Type::class, $bandePassante);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
