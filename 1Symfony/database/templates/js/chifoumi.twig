@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello JsController!{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {# Pas besoin de " defer " pour les modules car chargé à la demande uniquement #}
+   <script type="module" src="{{ asset('js/importExportClass.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+{% endblock %}

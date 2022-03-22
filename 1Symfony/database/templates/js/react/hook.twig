@@ -1,0 +1,24 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello React !{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#    <script defer src="{{ asset('build/js/react/todo.js') }}"></script>#}
+
+    {{ encore_entry_script_tags( 'js/hook') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div id="firstHook"></div>
+{% endblock %}

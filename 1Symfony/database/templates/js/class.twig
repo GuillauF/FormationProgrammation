@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script defer src="{{ asset('js/class/MaClass.js') }}"></script>
+    <script defer src="{{ asset('js/class/Human.js') }}"></script>
+    <script defer src="{{ asset('js/class/Magicien.js') }}"></script>
+    <script defer src="{{ asset('js/class/Des.js') }}"></script>
+    <script defer src="{{ asset('js/testDeMaClass.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="col-sm-2">
+        <input type="text" id="dice" name="dice" class="form-control">
+    </div>
+
+    <button id="throwDice" class="btn btn-primary">Lance les dés</button>
+
+    <div id="result"></div>
+{% endblock %}

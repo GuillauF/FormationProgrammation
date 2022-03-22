@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello React !{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {# Pas besoin de " defer " pour les modules car chargé à la demande uniquement #}
+    <script defer src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" defer></script>
+
+    <script defer type="text/babel" src="{{ asset('js/react/first.js') }}"></script>
+    <script defer src="{{ asset('js/react/calc.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div id="bonjourFirst"></div>
+    <div id="bonjourSecond"></div>
+    <div id="fragment"></div>
+    <div id="heure"></div>
+
+    <button class="btn btn-primary">test</button>
+    <button class="">test</button><br>
+
+
+    <div id="calcResult"></div>
+{% endblock %}
