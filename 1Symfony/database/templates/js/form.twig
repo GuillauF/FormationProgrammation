@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script defer src="{{ asset('js/form.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <form method="post" action="" novalidate>
+        <label for="nom">Entrez le nom</label>
+        <input type="text" name="nom" id="nom" minlength="3" maxlength="10" value="">
+
+        <label for="nom">Entrez le prénom</label>
+        <input type="text" name="prenom" id="prenom" value="" required>
+        <label for="nom">Entrez l'email</label>
+        <input type="email" name="email" id="email" value="" required>
+        <label for="nom">Entrez le téléphone</label>
+        <input type="tel" name="tel" id="tel" value="" required>
+        <label for="nom">Entrez le pseudo</label>
+        <input type="text" name="pseudo" id="pseudo" value="" required>
+        <label for="nom">Entrez le mot de passe</label>
+        <input type="password" name="pwd" id="pwd" value="" required>
+
+        <button type="submit">Envoyez</button>
+    </form>
+
+    <span id="messageErreur"></span>
+
+{% endblock body %}

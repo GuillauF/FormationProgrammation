@@ -1,0 +1,63 @@
+<nav>
+    <img class="logo" src="https://www.steamcars.be/wp-content/uploads/2019/10/S-TEAMCARS.png" alt="LogoTM">
+
+    <ul>
+        <li><a href="{{path('home')}}" class="">Accueil</a></li>
+        <li><a href="{{path('voiture_index')}}">Location Voitures</a></li>
+        <li class="button-select"><a href="#" class="">PHP</a>
+            <ul class="sous-menu">
+
+                <li><a href="{{path('sujet_index')}}">QCM</a></li>
+                <li><a href="{{path('calculatrice')}}">Calculatrice</a></li>
+                <li><a href="{{path('bande_passante')}}">Bande Passante</a></li>
+                <li><a href="{{path('jeu_des')}}">Lancer de Dés</a></li>
+                <li><a href="{{path('facture_elec')}}">Facture Elec</a></li>
+                <li><a href="{{path('nombre_aleat')}}">Random Nb</a></li>
+                <li><a href="{{path('volume_cone')}}">Volume Cone</a></li>
+                <li><a href="{{path('jour_semaine')}}">Weekday</a></li>
+            </ul>
+        </li>
+        <li class="button-select"><a href="#" class="">JS</a>
+            <ul class="sous-menu">
+                <li><a href="{{path('js_class')}}">Class</a></li>
+                <li><a href="{{path('js_tousLesExos')}}">TousLesExos</a></li>
+                <li><a href="{{path('js_formulaire')}}">Formulaire</a></li>
+                <li><a href="{{path('js_formComplet')}}">FormComplet</a></li>
+                <li><a href="{{path('js_snake')}}">Snake</a></li>
+            </ul>
+        </li>
+
+        <li class="button-select"><a href="#" class="">REACT</a>
+            <ul class="sous-menu">
+                <li><a href="{{path('react_exoFirst')}}">ExoFirst</a></li>
+                <li><a href="{{path('react_exoFirstJsx')}}">ExoFirstJSX</a></li>
+                <li><a href="{{path('react_component')}}">Component</a></li>
+                <li><a href="{{path('react_componentClass')}}">ComponentClass</a></li>
+                <li><a href="{{path('react_maPage')}}">MaPage</a></li>
+            </ul>
+        </li>
+
+    </ul>
+    <ul>
+        {% if is_granted('ROLE_USER') %}
+            <span >{{ app.user.email }} ></span>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            {% if mainNavAdmin is defined %}active{% endif %}
+            <a href="{{ path('updateUser', {'id': app.user.id} ) }}">espace admin</a>
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_logout') }}">déconnexion</a>
+
+        {% else %}
+            <li {% if mainNavRegistration is defined %}active{% endif %}">
+                <a {% if mainNavRegister is defined %}active{% endif %}" href="{{ path('app_register') }}">inscription</a>
+            </li>
+            <li {% if mainNavLogin is defined %}active{% endif %}">
+                <a href="{{ path('app_login') }}">connexion</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}exo todo{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{#    <script defer src="{{ asset('js/class/Chifoumi.mjs') }}"></script>#}
+    <script defer src="{{ asset('js/class/Todo.js') }}"></script>
+    <script type="module" src="{{ asset('js/tousLesExos.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        div#listUsers.row
+        {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div id="todo" class="card ">
+                <h5 class="card-header">Tache à faire</h5>
+
+                <div class="card-body"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+
+            <div id="chifoumi" class="card">
+                <h5 class="card-header">Jeu du chifoumi</h5>
+
+                <div class="card-body"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div id="des" class="card">
+                <h5 class="card-header">Dédé</h5>
+
+                <div class="card-body">
+                    <div class="col-sm-8">
+                        <input type="text" id="dice" name="dice" class="form-control">
+                    </div>
+
+                    <button id="throwDice" class="btn btn-primary mt-3">Lance les dés</button>
+
+                    <div id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <label for="selectUsers" class="mt-3">tape les premieres lettres de ta recherche</label>
+
+    <div class="col-sm-2">
+        <input type="text" id="selectUsers" class="form-control mb-3">
+    </div>
+
+    <div id="listUsers" class="row"></div>
+{% endblock body %}

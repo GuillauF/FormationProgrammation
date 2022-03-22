@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}exo todo{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script defer src="{{ asset('js/todo.js') }}"></script>
+{% endblock %}

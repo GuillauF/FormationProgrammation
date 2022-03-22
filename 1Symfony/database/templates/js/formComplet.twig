@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script defer src="{{ asset('js/formComplet.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <form method="post" action="" novalidate>
+        <label for="nom">Entrez le nom</label>
+        <input type="text" name="nom" id="nom" minlength="3" maxlength="10" value="">
+
+        <select id="biere" name="biere">
+            <option value="">Choisissez votre bière</option>
+            <option value="adel">adelscott</option>
+            <option value="leffe">Leffe</option>
+            <option value="IPA" selected>Leffe IPA</option>
+            <option value="jesaispas">aucune idée</option>
+        </select>
+
+{#        <div id="biereResult"></div>#}
+
+        <select id="cocktail" name="cocktail[]" multiple>
+            <option value="fraise" selected>fraise</option>
+            <option value="carotte">carotte</option>
+            <option value="gingembre" selected>gingembre</option>
+            <option value="tabasco" >tabasco</option>
+        </select>
+
+{#        <div id="cocktailResult"></div>#}
+
+        <label for="homme">homme</label>
+        <input type="radio" name="sexe" id="homme" value="homme" required>
+        <label for="femme">femme</label>
+        <input type="radio" name="sexe" id="femme" value="femme" required>
+
+{#        <div id="choixSexe"></div>#}
+
+        <label for="voiture">voiture</label>
+        <input type="checkbox" id="voiture" name="vehicule[]" value="voiture" required>
+        <label for="velo">velo</label>
+        <input type="checkbox" id="velo" name="vehicule[]" checked value="velo" required>
+        <label for="trotinette">trotinette</label>
+        <input type="checkbox" id="trotinette" name="vehicule[]" value="trotinette" required>
+
+{#        <div id="choixVehicule"></div>#}
+
+        <button type="submit">Envoyez</button>
+    </form>
+
+    <span id="messageErreur"></span>
+
+{% endblock body %}
