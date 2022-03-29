@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation\Slug as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
 class Voiture
@@ -18,28 +19,35 @@ class Voiture
     private $id;
 
     #[ORM\Column(type: 'string', length: 100)]
+    #[Groups("voiture:read")]
     private $nom;
 
     #[ORM\ManyToOne(targetEntity: Marque::class, inversedBy: 'voiture')]
     #[ORM\JoinColumn(nullable: true)]
+    #[Groups("voiture:read")]
     private $marque;
 
     #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: Images::class, cascade: ['persist'], orphanRemoval: true,)]
+    #[Groups("voiture:read")]
     private $images;
 
     #[ORM\ManyToOne(targetEntity: Prix::class, inversedBy: 'voiture')]
     #[ORM\JoinColumn(nullable: true)]
+    #[Groups("voiture:read")]
     private $prix;
 
     #[ORM\Column(type: 'text')]
+    #[Groups("voiture:read")]
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'annonceVoiture')]
     #[ORM\JoinColumn(nullable: true)]
+    #[Groups("voiture:read")]
     private $categories;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'voitures')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups("voiture:read")]
     private $user;
 
     #[Gedmo\Timestampable(['on = create'])]

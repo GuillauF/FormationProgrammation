@@ -14,6 +14,7 @@ export default function Hook()
     <h1>Bonjour Hook !</h1>
         Lumiere est : {isToggleLight ? 'allumée' : 'éteint'}
         <p> Prénom : {monTableau[1]} </p>
+        <button type='submit'>Jour / Nuit</button>
 
         <p> <input type="text" value={monInput} onChange={changeMonInput}/></p>
     </>

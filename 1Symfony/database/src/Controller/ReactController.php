@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
+use App\Repository\VoitureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[Route('/react', name: 'react_')]
 class ReactController extends AbstractController
@@ -61,5 +65,28 @@ class ReactController extends AbstractController
     public function hook() : Response
     {
         return $this->render('js/react/hook.twig');
+    }
+
+    #[Route('/tinder', name: 'tinder')]
+    public function tinder() : Response
+    {
+        return $this->render('js/react/tinder.twig');
+    }
+
+    #[Route('/ajaxSansRincer', name: 'ajaxSansRincer', methods: ['GET'] )]
+    public function ajaxSansRincer(UserRepository $userRepository, NormalizerInterface $normalizable) : Response
+    {
+        return $this->json($normalizable->normalize($userRepository->findAll()));
+    }
+
+    #[Route('/ajaxSansRincerBis', name: 'ajaxSansRincerBis', methods: ['GET'] )]
+    public function ajaxSansRincerBis(HttpClientInterface $httpClient) : Response
+    {
+        $response = $httpClient->request(
+            'GET',
+            'https://randomuser.me/api/?results=100&nat=fr'
+        );
+
+        return $this->json($response->toArray());
     }
 }

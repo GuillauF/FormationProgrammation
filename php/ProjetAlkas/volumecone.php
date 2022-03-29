@@ -2,7 +2,6 @@
 
 require('exos/volumecone/VolumeCone.php');
 require('util.php');
-$result = '';
 
 if (!empty($_POST['radius']) && !empty($_POST['height'])) {
     $volume = new VolumeCone($_POST['radius'], $_POST['height'], $_POST['round']);
