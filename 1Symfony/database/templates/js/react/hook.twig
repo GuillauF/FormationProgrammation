@@ -6,7 +6,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {#    <script defer src="{{ asset('build/js/react/todo.js') }}"></script>#}
+    {#    <script defer src="{{ asset('build/js/react/todo.js') }}"></script> #}
 
     {{ encore_entry_script_tags( 'js/hook') }}
 {% endblock %}
@@ -21,4 +21,5 @@
     {{ parent() }}
 
     <div id="firstHook"></div>
+
 {% endblock %}
