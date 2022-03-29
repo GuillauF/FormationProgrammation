@@ -1,7 +1,39 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 
-import TodoList from "./module/Hook";
+import Hook from "./module/Hook";
+import Calc from "./module/Calc";
+import TodoList from "./module/TodoList";
+import Metronome from "./module/Metronome";
 
-ReactDOM.render(<TodoList />, document.getElementById('firstHook')
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          name: 'React'
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <Hook />
+            <div>
+                <Calc />
+            </div>
+
+            <div>
+                <TodoList />
+            </div>
+                <div>
+                    <Metronome />
+                </div>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<App />, document.getElementById('firstHook'),
+
 );
