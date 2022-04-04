@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/sujet')]
 class SujetController extends AbstractController
 {
-    #[Route('/', name: 'sujet_index', methods: ['GET'])]
+
     public function index(SujetRepository $sujetRepository): Response
     {
         if (!$this->isGranted('ROLE_ADMIN') && !$this->isGranted('ROLE_USER'))  {
