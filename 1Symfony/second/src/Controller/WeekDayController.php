@@ -16,7 +16,7 @@ class WeekDayController extends AbstractController
         $month = '';
         $year = '';
         $weekday = '';
-        $equivalent = '';
+        $resultat = '';
 
         if($request->request->count()) {
             $day = $request->request->get('day');
@@ -29,15 +29,15 @@ class WeekDayController extends AbstractController
             $m = $month + 12 * $c - 2;
             $weekday = ($day + $a + intdiv($a, 4) - intdiv($a, 100) + intdiv($a, 400) + intdiv((31 * $m), 12)) % 7;
 //on prépare un tableau de jours en "toutes lettres"
-            $equivalent = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-
+            $equivalent = [0 => "Dimanche", 1 =>"Lundi", 2=>"Mardi", 3=>"Mercredi", 4=>"Jeudi", 5=>"Vendredi", 6=>"Samedi"];
+            $resultat = $equivalent[$weekday];
         }
         return $this->render('week_day/index.html.twig', [
             'day' => $day,
             'month' => $month,
             'year' => $year,
             'weekday' => $weekday,
-            'equivalent' => $equivalent[$weekday]
+            'equivalent' => $resultat
         ]);
     }
 }
