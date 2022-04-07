@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
     {
         $userCurrentID = $this->getUser()->getId();
 
-//        if($userCurrentID !== $user->getId() && !$this->isGranted('ROLE_ADMIN')) {
+//        if($userCurrentID !== $utilisateur->getId() && !$this->isGranted('ROLE_ADMIN')) {
         if($userCurrentID !== $user->getId()) {
 
             return $this->redirectToRoute('updateUser', ['id' => $userCurrentID]);

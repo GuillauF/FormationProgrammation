@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use App\Entity\Utilisateur;
-use App\Form\UtilisateurType;
-use App\Repository\UtilisateurRepository;
+use App\Entity\User;
+use App\Form\UpdateUserFormType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 
 /**
  * @Route("/utilisateur")
  */
-class UtilisateurController extends AbstractController
+class UserController extends AbstractController
 {
     /**
      * @Route("/", name="utilisateur_index", methods={"GET"})
      */
-    public function index(UtilisateurRepository $utilisateurRepository, Session $session): Response
+    public function index(UserRepository $utilisateurRepository, Session $session): Response
     {
         //besoin de droits admin
         $utilisateur = $this->getUser();
@@ -42,7 +43,7 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/new", name="utilisateur_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder, Session $session): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Session $session): Response
     {
 
         //test de sécurité, un utilisateur connecté ne peut pas s'inscrire
@@ -53,13 +54,11 @@ class UtilisateurController extends AbstractController
             return $this->redirectToRoute('membre');
         }
 
-        $utilisateur = new Utilisateur();
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $utilisateur = new User();
+        $form = $this->createForm(UpdateUserFormType::class, $utilisateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $utilisateur->setPassword($passwordEncoder->encodePassword($utilisateur, $utilisateur->getPassword()));
             /* uniquement pour créer un admin
             $role = ['ROLE_ADMIN'];
             $utilisateur->setRoles($role); */
@@ -78,7 +77,7 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/{id}", name="utilisateur_show", methods={"GET"})
      */
-    public function show(Utilisateur $utilisateur): Response
+    public function show(User $utilisateur): Response
     {
         //accès géré dans le security.yaml
         return $this->render('utilisateur/show.html.twig', [
@@ -89,21 +88,21 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/{id}/edit", name="utilisateur_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Utilisateur $utilisateur, UserPasswordEncoderInterface $passwordEncoder, Session $session, $id): Response
+    public function edit(Request $request, User $utilisateur, EntityManagerInterface $entityManager, Session $session, $id): Response
     {
-        $utilisateur = $this->getUser();
         if($utilisateur->getId() != $id )
         {
             // un utilisateur ne peut pas en modifier un autre
             $session->set("message", "Vous ne pouvez pas modifier cet utilisateur");
-            return $this->redirectToRoute('membre');
+            return $this->redirectToRoute('utilisateur_edit');
         }
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+
+        $utilisateur = $this->getUser();
+        $form = $this->createForm(UpdateUserFormType::class, $utilisateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $utilisateur->setPassword($passwordEncoder->encodePassword($utilisateur, $utilisateur->getPassword()));
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('utilisateur_index');
         }
@@ -117,9 +116,8 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/{id}", name="utilisateur_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Utilisateur $utilisateur, Session $session, $id): Response
+    public function delete(Request $request, User $utilisateur, EntityManagerInterface $entityManager , Session $session, $id): Response
     {
-        $utilisateur = $this->getUser();
         if($utilisateur->getId() != $id )
         {
             // un utilisateur ne peut pas en supprimer un autre
@@ -127,9 +125,9 @@ class UtilisateurController extends AbstractController
             return $this->redirectToRoute('membre');
         }
 
+        $utilisateur = $this->getUser();
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getId(), $request->request->get('_token')))
         {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($utilisateur);
             $entityManager->flush();
             // permet de fermer la session utilisateur et d'éviter que l'EntityProvider ne trouve pas la session
@@ -137,6 +135,6 @@ class UtilisateurController extends AbstractController
             $session->invalidate();
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_home_page');
     }
 }
