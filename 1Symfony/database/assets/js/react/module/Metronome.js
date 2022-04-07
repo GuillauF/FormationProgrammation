@@ -1,3 +1,8 @@
+/**
+ * Ce n'est pas ce qui est demandé dans l'intitulé car tu as fait un métronome donc c'est un hors sujet
+ * mais tu l'as bien fait et bien saisi comment marche React donc c'est tout bon pour moi
+ * Voir mon todo dans ton code ;)
+ */
 import React, { Component } from 'react';
 
 class Metronome extends Component {
@@ -37,6 +42,13 @@ class Metronome extends Component {
         };
     }
 
+    /**
+     * TODO pense à mettre des accolades sinon c'est des sources à bugs
+     * inverse tes conditions aussi
+     * if (this.state.count === 0) devrait être
+     * if (0 === this.state.count)
+     *
+     */
     playClick() {
         if (this.state.count === 0) this.click2.play();
         else this.click1.play();

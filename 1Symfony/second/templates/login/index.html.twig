@@ -1,27 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formulaire n°2{% endblock %}
+{% block title %} Inscription {% endblock %}
 
 
 {% block body %}
-    <h1>mon formulaire second</h1>
-    {{ cequejetape }}
+    <h1>Inscription</h1>
+
     {#    {{ form(formulaire) }} formulaire automatique #}
 
     {{ form_start(formulaire) }}{#    <form action="" method="post">#}
-    <aside style="float: left; width: 49.3%; ">{{ form_row(formulaire.prenom) }}</aside>
-    <aside style="width: 49.3%; float: right;">{{ form_row(formulaire.cle) }}</aside>
-
-    {# <input type="submit"> #}
+    {{ form_row(formulaire.prenom) }}
+    {{ form_row(formulaire.nom) }}
+    {{ form_row(formulaire.login) }}
+    {{ form_row(formulaire.mail) }}
+    {{ form_row(formulaire.password) }}
+    <input type="submit" value="S'inscrire">
 
     {{ form_end(formulaire) }}{#    </form>#}
 
+    {{ email }}
+    {{ resultat }}
 
     {#    <form action="" method="post">#}
     {#        <input type="text" name="champ" value="">#}
     {#        <input type="submit" value="Envoyez">#}
     {#    </form>#}
-
 
 
 {% endblock %}

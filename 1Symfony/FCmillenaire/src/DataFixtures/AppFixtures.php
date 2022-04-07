@@ -2,7 +2,10 @@
 
 namespace App\DataFixtures;
 
+<<<<<<< HEAD
 use App\Entity\Joueur;
+=======
+>>>>>>> origin/FCmillenaire
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -10,6 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+<<<<<<< HEAD
         $faker = \Faker\Factory::create('fr_FR');
         \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
 
@@ -23,6 +27,8 @@ class AppFixtures extends Fixture
 
 
 
+=======
+>>>>>>> origin/FCmillenaire
         // $product = new Product();
         // $manager->persist($product);
 
