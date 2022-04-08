@@ -14,7 +14,7 @@ class ActualiteController extends AbstractController
     #[Route('/actualite', name: 'actualite')]
     public function actualite(JoueurRepository $joueurRepository, EntityManagerInterface $em): Response
     {
-        $joueurs = $joueurRepository->findBy([], [], 3);
+        $joueurs = $joueurRepository->findBy(['genre'=>'male'], [], 10);
 //        $joueurs = new Joueur;
 //
 //        $joueurs ->setName('Beer')
@@ -32,7 +32,5 @@ class ActualiteController extends AbstractController
         ]);
 
     }
-
-
 }
 

@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
                     ->setDescription($faker->sentence(10,true))
                     ->setPicture($faker->imageUrl())
                     ->setCountry($faker->country())
-                    ->setGenre($faker->randomElement($array=array('male','female')))
+                    ->setGenre($faker->randomElement(array('male','female')))
                     ->setEquipe($equipe);
 
                 $manager->persist($joueur);
