@@ -4,17 +4,21 @@ namespace App\DataFixtures;
 
 use App\Entity\Equipe;
 use App\Entity\Joueur;
+use Bezhanov\Faker\Provider\Demographic;
+use Bezhanov\Faker\Provider\Placeholder;
+use Bezhanov\Faker\ProviderCollectionHelper;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create('fr_FR');
-        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
-        $faker->addProvider(new \Bezhanov\Faker\Provider\Placeholder($faker));
-        $faker->addProvider(new \Bezhanov\Faker\Provider\Demographic($faker));
+        $faker = Factory::create('fr_FR');
+        ProviderCollectionHelper::addAllProvidersTo($faker);
+        $faker->addProvider(new Placeholder($faker));
+        $faker->addProvider(new Demographic($faker));
 
 
         for ($e = 0; $e < 10; $e++) {
