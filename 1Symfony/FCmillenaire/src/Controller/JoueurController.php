@@ -12,8 +12,7 @@ class JoueurController extends AbstractController
     #[Route('/joueur', name: 'app_joueur')]
     public function index(JoueurRepository $joueurRepository): Response
     {
-        $genre = $joueurRepository->findBy(['genre' => 'male'])
-      ;
+        $genre = $joueurRepository->findBy(['genre' => 'male']);
 
 
 
