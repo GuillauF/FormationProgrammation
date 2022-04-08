@@ -33,13 +33,13 @@ class AppFixtures extends Fixture
 
             for ($j = 0; $j < mt_rand(15, 20); $j++) {
                 $joueur = new Joueur;
-                $joueur->setName($faker->firstName('male'))
+                $joueur->setName($faker->firstName('female'))
                     ->setSurname(strtoupper($faker->lastName()))
                     ->setMail($faker->email())
                     ->setDescription($faker->sentence(10, true))
-                    ->setPicture($faker->imageUrl())
+                    ->setPicture($faker->imageUrl(500, 500, null, 'true'))
                     ->setCountry($faker->country())
-                    ->setGenre($faker->randomElement($array = array('male', 'female')))
+                    ->setGenre($faker->randomElement(['male', 'female']))
                     ->setEquipe($equipe);
 
                 $manager->persist($joueur);
@@ -47,14 +47,14 @@ class AppFixtures extends Fixture
                 for ($n = 0; $n < mt_rand(); $n++) {
                     $reservation = new ReservationBillet();
                     $reservation->setNumero($faker->randomNumber())
-                        ->setName($faker->name('male'));
+                        ->setName($faker->name('female'));
+
+                    $manager->persist($reservation);
 
                 }
-                $manager->persist($reservation);
             }
 
         }
-
 
         // $product = new Product();
         // $manager->persist($product);
