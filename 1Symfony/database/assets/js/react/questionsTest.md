@@ -12,6 +12,9 @@ que l'on peut utiliser au niveau de la racine de notre projet
 Réponse : Il faut utiliser des balises ouvrantes et fermantes au niveau du return dans notre render
 et mettre les variables entre accolades
 
+
+    Il faut utiliser babel, sit l'installer ou ajouter la balise script pour les débutants mais sinon c'est ça
+
 - Qu'est-ce qu'un composant ?
 Réponse : les composants sont comme des fonctions JavaScript. Ils acceptent des objets,
 appelées « props », et renvoient des éléments React décrivant ce qui doit apparaître à l’écran.
@@ -51,3 +54,7 @@ class App extends React.Component {
     });
   }
 
+    pour une classe, il faut créer l'état this.state.nomVariable = 'quelque chose'
+    puis this.setState pour changer une valeur
+    this.setState({nomVariable : 'quelque chose'})
+    que tu as par ailleurs très bien utiliser dans ton métronnome  
