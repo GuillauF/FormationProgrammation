@@ -5,14 +5,17 @@
 {% block body %}
 
 <div class="row">
-    {% for i in 0..3  %}
+    {% for j in joueur %}
     <div class="col">
         <div class="card">
-            <img src="https://picsum.photos/305/150" class="img-fluid" alt="image">
+            <img src="{{ j.picture }}" class="img-fluid" alt="image">
             <div class="car-body">
-              <h4 class="card-title">
-                  joueur
-              </h4>
+              <h4 class="card-title">{{ j.name}}</h4>
+                <span class="badge badge bg-dark"> {{ j.surname }}</span>
+                <p class="card-text"> {{ j.description }}</p>
+                <p class="card-equipe">{{ j.country }}</p>
+                <a href="" class="btn btn-info btn-sm">plus de details</a>
+
             </div>
         </div>
     </div>
