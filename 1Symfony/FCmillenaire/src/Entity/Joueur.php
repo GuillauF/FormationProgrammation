@@ -22,6 +22,23 @@ class Joueur
     #[ORM\Column(type: 'string', length: 100)]
     private $mail;
 
+    #[ORM\Column(type: 'object')]
+    private $picture;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $description;
+
+    #[ORM\ManyToOne(targetEntity: Equipe::class, inversedBy: 'joueurs')]
+    private $equipe;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $genre;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $country;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +79,68 @@ class Joueur
 
         return $this;
     }
+
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    public function setPicture($picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getEquipe(): ?Equipe
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(?Equipe $equipe): self
+    {
+        $this->equipe = $equipe;
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+
+
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\Joueur;
 use App\Repository\JoueurRepository;
@@ -9,12 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomePageController extends AbstractController
+class ActualiteController extends AbstractController
 {
-    #[Route('/homepage', name: 'app_home_page')]
-    public function index(EntityManagerInterface $em,JoueurRepository $joueurRepository): Response
+    #[Route('/actualite', name: 'actualite')]
+    public function actualite(JoueurRepository $joueurRepository, EntityManagerInterface $em): Response
     {
-        $joueurs=$joueurRepository->findBy([],[],3);
+        $joueurs = $joueurRepository->findBy([], [], 3);
 //        $joueurs = new Joueur;
 //
 //        $joueurs ->setName('Beer')
@@ -25,9 +25,14 @@ class HomePageController extends AbstractController
 
         $em->flush();
 
-        return $this->render('home_page/index.html.twig', [
+
+        return $this->render('actualite/index.html.twig', [
+            'controller_name' => 'ActualiteController',
             'joueur' => $joueurs,
-//        'controller-name'=>'HomePageController',
         ]);
+
     }
+
+
 }
+
