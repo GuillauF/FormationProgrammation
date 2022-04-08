@@ -23,7 +23,6 @@ class AppFixtures extends Fixture
         $faker->addProvider(new Demographic($faker));
 
 
-
         for ($e = 0; $e < 10; $e++) {
 
             $equipe = new Equipe();
@@ -46,9 +45,9 @@ class AppFixtures extends Fixture
                 $manager->persist($joueur);
 
                 for ($n = 0; $n < mt_rand(); $n++) {
-                    $reservation= new ReservationBillet();
+                    $reservation = new ReservationBillet();
                     $reservation->setNumero($faker->randomNumber())
-->setName($faker->name('male'));
+                        ->setName($faker->name('male'));
 
                 }
                 $manager->persist($reservation);
