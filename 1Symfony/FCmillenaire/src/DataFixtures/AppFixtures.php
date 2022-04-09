@@ -19,8 +19,9 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $faker->addProvider(new Placeholder($faker));
-        $faker->addProvider(new Demographic($faker));
+
+        $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
+
 
 
         for ($e = 0; $e < 10; $e++) {
@@ -47,8 +48,8 @@ class AppFixtures extends Fixture
                 for ($n = 0; $n < mt_rand(); $n++) {
                     $reservation = new ReservationBillet();
                     $reservation->setNumero($faker->randomNumber())
-                        ->setName($faker->name('male'));
-
+                        ->setName($faker->name('male'))
+                        ->setPrice(mt_rand(15, 600));
                 }
                 $manager->persist($reservation);
             }
