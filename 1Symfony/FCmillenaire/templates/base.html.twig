@@ -14,9 +14,6 @@
         {% endblock %}
 
         {% block javascripts %}
-{#            {{ parent() }}#}
-{#            defer src="{{ asset('js/form.js') }}#}
-            <script type="text/javascript" src="bootstrap/bootstrap.js" charset="UTF-8"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
