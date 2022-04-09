@@ -47,8 +47,8 @@ class AppFixtures extends Fixture
                 for ($n = 0; $n < mt_rand(); $n++) {
                     $reservation = new ReservationBillet();
                     $reservation->setNumero($faker->randomNumber())
-                        ->setName($faker->name('male'));
-
+                        ->setName($faker->name('male'))
+                        ->setPrice(mt_rand(15, 600));
                 }
                 $manager->persist($reservation);
             }
