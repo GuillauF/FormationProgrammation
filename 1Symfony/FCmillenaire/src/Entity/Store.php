@@ -14,10 +14,14 @@ class Store
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $ventes;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $billets;
+
 
     #[ORM\Column(type: 'string', length: 255)]
     private $maillots;
@@ -104,6 +108,18 @@ class Store
     public function setAccessoires(string $accessoires): self
     {
         $this->accessoires = $accessoires;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -155,9 +155,10 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab1" role="tab">Ventes</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="pill" data-bs-target="#tab2" role="tab">Billets</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_store') }}"> Billets</a>
                 </li>
+
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" data-bs-toggle="pill" data-bs-target="#tab3" role="tab">Maillots</a>
                 </li>
@@ -179,7 +180,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
                         <div class="img-thumbnail">
-                            <img src="images/stade.png" class="img-fluid" alt="...">
+                            <img src="{{ asset('pictureStore/stade.png') }}" class="img-fluid" alt="...">
                             <div class="price">58.90 €</div>
                             <div class="caption">
                                 <h4>VIP</h4>
@@ -195,7 +196,7 @@
 
                     <div class="col-md-6 col-lg-4">
                         <div class="img-thumbnail">
-                            <img src="images/maillotdomicile.png" class="img-fluid" alt="...">
+                            <img src="{{ asset('pictureStore/maillotdomicile.png') }}" class="img-fluid" alt="...">
                             <div class="price">19.50 €</div>
                             <div class="caption">
                                 <h4>Domicile</h4>
@@ -209,7 +210,7 @@
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="img-thumbnail">
-                            <img src="images/shortdomicile.png" class="img-fluid" alt="...">
+                            <img src="{{ asset('pictureStore/shortdomicile.png') }}" class="img-fluid" alt="...">
                             <div class="price">10.90 €</div>
                             <div class="caption">
                                 <h4>Domicile</h4>
@@ -223,7 +224,7 @@
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="img-thumbnail">
-                            <img src="images/sweat.png" class="img-fluid" alt="...">
+                            <img src="{{ asset('pictureStore/sweat.png') }}" class="img-fluid" alt="...">
                             <div class="price">19.90 €</div>
                             <div class="caption">
                                 <h4>Sweats</h4>
@@ -235,7 +236,7 @@
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="img-thumbnail">
-                            <img src="images/ballon.png" class="img-fluid" alt="...">
+                            <img src="{{ asset('pictureStore/ballon.png') }}"class="img-fluid" alt="...">
                             <div class="price">10.90 €</div>
                             <div class="caption">
                                 <h4>Accessoires</h4>
@@ -263,18 +264,18 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <a href="https://www.credit-agricole.fr" target=" blank">
-                                        <img src="images/créditagricole.png" class="img-thumbnail"
+                                        <img src="{{ asset('pictureStore/créditagricole.png') }}" class="img-thumbnail"
                                              alt="créditagricoleshare">
                                     </a>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="https://www.dell.com/fr-fr" target=" blank">
-                                        <img src="images/dell.png" class="img-thumbnail" alt="dellshare">
+                                        <img src="{{ asset('pictureStore/dell.png') }}" class="img-thumbnail" alt="dellshare">
                                     </a>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="www.groupenicollin.com" target=" blank">
-                                        <img src="images/Nicollin.png" class="img-thumbnail" alt="groupenicollinshare">
+                                        <img src="{{ asset('pictureStore/Nicollin.png') }}" class="img-thumbnail" alt="groupenicollinshare">
                                     </a>
                                 </div>
 
@@ -282,17 +283,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <a href="https://www.montpellier.fr" target=" blank">
-                                        <img src="images/montpellier.png" class="img-thumbnail" alt="montpelliershare">
+                                        <img src="{{ asset('pictureStore/montpellier.png') }}" class="img-thumbnail" alt="montpelliershare">
                                     </a>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="https://www.mhscfoot.com" target=" blank">
-                                        <img src="images/mhsc.png" class="img-thumbnail" alt="mhscshare">
+                                        <img src="{{ asset('pictureStore/mhsc.png') }}" class="img-thumbnail" alt="mhscshare">
                                     </a>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="https://www.laregion.fr/Grands-Sites-Occitanie" target=" blank">
-                                        <img src="images/regionoccitanie.png" class="img-thumbnail" alt="regionshare">
+                                        <img src="{{ asset('pictureStore/regionoccitanie.png') }}" class="img-thumbnail" alt="regionshare">
                                     </a>
                                 </div>
 

@@ -1,17 +1,17 @@
 <?php
 namespace App\Form;
 
-use App\Entity\Store;
+use App\Entity\ReservationBillet;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class  StoreFormType extends AbstractType
+class BilletFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-      $builder
+       $builder
 //
 //            ->add('name', TextType::class, [
 //                'label' => 'Votre nom',
@@ -21,10 +21,10 @@ class  StoreFormType extends AbstractType
 //            ])
 
 
-            ->add ('name');
+               ->add ('name');
 
 
-   //          ->add('billets');
+   //            ->add('billets');
     }
 
 // il faut utiliser la methode Optionsresolver pour faire le formulaire de la base donnée store pour pouvoir appeler billets
@@ -32,7 +32,7 @@ class  StoreFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Store::class,
+            'data_class' => ReservationBillet::class,
         ]);
     }
 }
