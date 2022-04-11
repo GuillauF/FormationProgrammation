@@ -44,7 +44,9 @@ class AppFixtures extends Fixture
 
                 $manager->persist($joueur);
 
-                for ($n = 0; $n < mt_rand(); $n++) {
+
+
+                for ($n = 0; $n < 10; $n++) {
                     $reservation = new ReservationBillet();
                     $reservation->setNumero($faker->randomNumber())
                         ->setName($faker->name('female'));
