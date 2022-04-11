@@ -3,6 +3,7 @@ namespace App\Form;
 
 use App\Entity\Store;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -11,6 +12,7 @@ class  StoreFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder ->add('numero',MoneyType::class,['label'=>'prix du billets']);
    //     $builder
 //
 //            ->add('name', TextType::class, [
