@@ -111,7 +111,7 @@ class Store
 
         return $this;
     }
-
+// J'ai rajouté name et email pour le formulaire de réservation de billets
     public function getName(): ?string
     {
         return $this->name;
@@ -120,6 +120,18 @@ class Store
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

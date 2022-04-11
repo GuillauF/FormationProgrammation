@@ -16,6 +16,11 @@ class ReservationBillet
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\Column(type: 'email', length: 255)]
+    private $email;
+
+
+
     #[ORM\Column(type: 'integer')]
     private $numero;
 
@@ -43,6 +48,7 @@ class ReservationBillet
 
         return $this;
     }
+
 
     public function getNumero(): ?int
     {
@@ -79,5 +85,6 @@ class ReservationBillet
 
         return $this;
     }
+
 
 }

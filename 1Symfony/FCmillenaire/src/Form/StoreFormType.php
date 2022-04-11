@@ -12,16 +12,19 @@ class  StoreFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
       $builder
-//
+
 //            ->add('name', TextType::class, [
 //                'label' => 'Votre nom',
 //                'attr' => [
 //                    'placeholder' => 'Merci de saisir votre nom'
 //                ]
-//            ])
+//            ]);
 
 
             ->add ('name');
+
+//           ->add ('email');
+
 
 
    //          ->add('billets');
