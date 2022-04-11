@@ -28,8 +28,7 @@ class Joueur
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\ManyToOne(targetEntity: Equipe::class, inversedBy: 'joueurs')]
-    private $equipe;
+
 
     #[ORM\Column(type: 'string', length: 255)]
     private $genre;
@@ -104,17 +103,6 @@ class Joueur
         return $this;
     }
 
-    public function getEquipe(): ?Equipe
-    {
-        return $this->equipe;
-    }
-
-    public function setEquipe(?Equipe $equipe): self
-    {
-        $this->equipe = $equipe;
-
-        return $this;
-    }
 
     public function getGenre(): ?string
     {
