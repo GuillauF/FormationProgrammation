@@ -13,10 +13,10 @@ class SearchController extends AbstractController
     public function index(JoueurRepository $joueurRepository): Response
     {
         $joueur = $joueurRepository->findAll();
-
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-            'genre'=>$joueur
-        ]);
+return $this->redirectToRoute('app_show_actualite');
+//        return $this->render('search/index.html.twig', [
+//            'controller_name' => 'SearchController',
+//            'joueur'=>$joueur
+//        ]);
     }
 }
