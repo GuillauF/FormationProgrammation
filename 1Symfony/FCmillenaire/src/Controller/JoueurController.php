@@ -15,8 +15,6 @@ class JoueurController extends AbstractController
         $genre = $joueurRepository->findBy(['genre' => 'male'])
       ;
 
-
-
         return $this->render('joueur/index.html.twig', [
             'controller_name' => 'JoueurController',
             'genre' => $genre

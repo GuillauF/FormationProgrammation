@@ -19,12 +19,12 @@ class GestionSecurite
 
                 if($login && $password && $valider) {
 
-                    $query = 'SELECT * FROM user where login= :login';
+                    $query = 'SELECT * FROM utilisateur where login= :login';
                     $prepare = $connexionBDD->prepare($query);
                     $prepare->execute([
                         ':login' => $login]);
                     if($prepare->rowCount()) {
-                        $_SESSION['user'] = $login;
+                        $_SESSION['utilisateur'] = $login;
                     }
                     // puis on execute sa requete
                     while ($tab = $prepare->fetch(PDO::FETCH_ASSOC)) { // tant qu'on récupère l'enregistrement d'un utilisateur, on boucle
@@ -65,11 +65,11 @@ class GestionSecurite
             $envoyer = $request->getPost('envoyer');
 
             if ($nom && $prenom && $login && $password && $envoyer) {
-                if ($_SESSION['user'] = $login) {
+                if ($_SESSION['utilisateur'] = $login) {
                     $password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $query = 'UPDATE user SET nom= :nom, prenom= :prenom, password = :password WHERE login= :login';
-                    //UPDATE user SET `nom`= "Baba", `prenom`= "Aliexpress" WHERE `login`= "Etles"
+                    $query = 'UPDATE utilisateur SET nom= :nom, prenom= :prenom, password = :password WHERE login= :login';
+                    //UPDATE utilisateur SET `nom`= "Baba", `prenom`= "Aliexpress" WHERE `login`= "Etles"
                     $prepare = $connexionBDD->prepare($query);
                     $prepare->execute([
                         ':nom' => $nom,

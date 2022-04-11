@@ -31,7 +31,7 @@ class GestionUtilisateur
                 if ($password == $password2) {
                     $password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $query = "insert into user 
+                    $query = "insert into utilisateur 
                             (nom, prenom, login, password, roles_id, date_inscription)
                           values
                             (:nom, :prenom, :login, :password, 1, now())";
@@ -73,7 +73,7 @@ class GestionUtilisateur
     public function find()
     {
         try { // on essaye et si il y a un problème alors on affiche un message d'erreur adapté
-            $prepare = $this->connexionBDD->prepare('select * from user order by date_inscription desc limit 10');
+            $prepare = $this->connexionBDD->prepare('select * from utilisateur order by date_inscription desc limit 10');
             $prepare->execute();
             $html = '';
 
@@ -94,7 +94,7 @@ class GestionUtilisateur
     public function findUser()
     {
         try { // on essaye et si il y a un problème alors on affiche un message d'erreur adapté
-            $prepare = $this->connexionBDD->prepare('select * from user where id = 20');
+            $prepare = $this->connexionBDD->prepare('select * from utilisateur where id = 20');
             $prepare->execute();
             $resultat = '';
 
