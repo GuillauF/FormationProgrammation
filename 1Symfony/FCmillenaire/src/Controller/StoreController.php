@@ -13,7 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StoreController extends AbstractController
 {
-    #[Route('/store', name: 'app_store')]
+    #[Route('/storeAccueil', name: 'storeAccueil')]
+    public function index(): Response
+    {
+        return $this->render('store/index.html.twig', [
+            'controller_name' => 'StoreController',
+        ]);
+    }
+
+
+#[Route('/store', name: 'app_store')]
     public function register(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation_billet = new Store();
