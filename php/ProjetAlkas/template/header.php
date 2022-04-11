@@ -24,12 +24,12 @@
             </ul>
         </ul>
         <?php
-        if(!isset($_SESSION['user'])) { ?>
+        if(!isset($_SESSION['utilisateur'])) { ?>
             <a href="connexion.php">se connecter</a>
             <?php
         }
-        if(!empty($_SESSION['user'])) { ?>
-            Utilisateur : <?=$_SESSION['user']?> <a href="logout.php">se déconnecter</a>
+        if(!empty($_SESSION['utilisateur'])) { ?>
+            Utilisateur : <?=$_SESSION['utilisateur']?> <a href="logout.php">se déconnecter</a>
             <?php
         }
         ?>
