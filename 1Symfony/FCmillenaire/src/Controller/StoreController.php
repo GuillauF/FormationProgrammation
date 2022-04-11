@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ReservationBillet;
 use App\Entity\Store;
 use App\Form\StoreFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,15 +15,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class StoreController extends AbstractController
 {
     #[Route('/storeAccueil', name: 'storeAccueil')]
-    public function index(): Response
+    public function index(EntityManagerInterface $em): Response
     {
+        $reservation = new ReservationBillet();
+
+        $reservation->setNumero('2')
+            ->setName('Jean')
+            ->setPrice('71');
+        $em->persist($reservation);
+
+        $em->flush();
+
         return $this->render('store/index.html.twig', [
             'controller_name' => 'StoreController',
         ]);
     }
 
 
-#[Route('/store', name: 'app_store')]
+    #[Route('/store', name: 'app_store')]
     public function register(Request $request, EntityManagerInterface $entityManager): Response
     {
         $reservation_billet = new Store();
