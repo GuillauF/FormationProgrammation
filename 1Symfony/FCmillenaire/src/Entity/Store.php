@@ -14,22 +14,22 @@ class Store
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Ventes;
+    private $ventes;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Billets;
+    private $billets;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Maillots;
+    private $maillots;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Shorts;
+    private $shorts;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Sweats;
+    private $sweats;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Accessoires;
+    private $accessoires;
 
     public function getId(): ?int
     {
@@ -38,72 +38,72 @@ class Store
 
     public function getVentes(): ?string
     {
-        return $this->Ventes;
+        return $this->ventes;
     }
 
-    public function setVentes(string $Ventes): self
+    public function setVentes(string $ventes): self
     {
-        $this->Ventes = $Ventes;
+        $this->ventes = $ventes;
 
         return $this;
     }
 
     public function getBillets(): ?string
     {
-        return $this->Billets;
+        return $this->billets;
     }
 
-    public function setBillets(string $Billets): self
+    public function setBillets(string $billets): self
     {
-        $this->Billets = $Billets;
+        $this->billets = $billets;
 
         return $this;
     }
 
     public function getMaillots(): ?string
     {
-        return $this->Maillots;
+        return $this->maillots;
     }
 
-    public function setMaillots(string $Maillots): self
+    public function setMaillots(string $maillots): self
     {
-        $this->Maillots = $Maillots;
+        $this->maillots = $maillots;
 
         return $this;
     }
 
     public function getShorts(): ?string
     {
-        return $this->Shorts;
+        return $this->shorts;
     }
 
-    public function setShorts(string $Shorts): self
+    public function setShorts(string $shorts): self
     {
-        $this->Shorts = $Shorts;
+        $this->shorts = $shorts;
 
         return $this;
     }
 
     public function getSweats(): ?string
     {
-        return $this->Sweats;
+        return $this->sweats;
     }
 
-    public function setSweats(string $Sweats): self
+    public function setSweats(string $sweats): self
     {
-        $this->Sweats = $Sweats;
+        $this->sweats = $sweats;
 
         return $this;
     }
 
     public function getAccessoires(): ?string
     {
-        return $this->Accessoires;
+        return $this->accessoires;
     }
 
-    public function setAccessoires(string $Accessoires): self
+    public function setAccessoires(string $accessoires): self
     {
-        $this->Accessoires = $Accessoires;
+        $this->accessoires = $accessoires;
 
         return $this;
     }
